@@ -10,11 +10,10 @@ import { BrandInstagram, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     footer: {
-        // marginTop: 100,
         paddingTop: theme.spacing.md,
-        position: "absolute",
+        position: "relative",
         width: '100%',
-        bottom: 0,
+        bottom: -96,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
         borderTop: `1px solid ${
             theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]

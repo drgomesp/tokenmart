@@ -1,20 +1,13 @@
-import { AppShell, Divider, } from '@mantine/core';
+import { AppShell, Title } from "@mantine/core";
 import {
     HeaderCustom
 } from "~/components/tokenmart/layout/HeaderCustom/HeaderCustom";
 import {
-    FeaturesTitle
-} from "~/components/tokenmart/layout/FeaturesTitle/FeaturesTitle";
-import {
     FooterLinks
 } from "~/components/tokenmart/layout/FooterLinks/FooterLinks";
-import RecentPurchases
-    from "~/components/tokenmart/nft/RecentPurchases/RecentPurchases";
-import RecentlyListed
-    from "~/components/tokenmart/nft/RecentlyListed/RecentlyListed";
 import links from "~/links";
 
-export default function Index() {
+export default function About() {
     return (
         <div className={"container"}>
             <AppShell
@@ -24,16 +17,12 @@ export default function Index() {
                 header={<HeaderCustom links={links()}/>}
                 styles={(theme) => ({
                     main: {
-                        padding: 0,
+                        padding: 20,
                         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0]
                     },
                 })}
             >
-                <FeaturesTitle/>
-
-                <RecentPurchases/><Divider/>
-
-                <RecentlyListed/>
+                <Title order={2}>Collectionry</Title>
 
             </AppShell>
 

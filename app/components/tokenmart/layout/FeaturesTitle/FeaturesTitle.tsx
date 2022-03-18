@@ -10,22 +10,23 @@ import {
     Title
 } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
-import Trending from "~/components/tokenmart/nft/TrendingCard/Trending";
+import TrendingCard from "~/components/tokenmart/nft/TrendingCard/TrendingCard";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
         maxWidth: 960,
         margin: '0 auto',
         padding: `${theme.spacing.xl * 2}px ${theme.spacing.xl * 1.25}px`,
-        minHeight: 750,
+        minHeight: 500,
     },
 
     title: {
+        marginTop: 140,
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
         fontSize: 36,
         fontWeight: 900,
         lineHeight: 1.1,
-        marginBottom: theme.spacing.md,
+        marginBottom: theme.spacing.sm,
         color: theme.colorScheme === 'dark' ? theme.white : theme.black,
     },
 }));
@@ -93,11 +94,11 @@ export function FeaturesTitle() {
                                   gradient={{
                                       from: 'grape',
                                       to: 'orange',
-                                      deg: 178,
+                                      deg: 175,
                                   }} inherit>
                                 Discover, Collect, Create and Sell
                             </Text>
-                            <Text color="dimmed">
+                            <Text weight={500} color="dimmed">
                                 The marketplace for your most valuable NFTs
                             </Text>
                         </Text>
@@ -126,18 +127,18 @@ export function FeaturesTitle() {
                 </Col>
                 <Col span={6} md={6}>
                     <Group>
-                        <Trending collection="Ape Wives"
-                                  image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
-                                  id={349} stats={stats}/>
-                        <Trending collection="Degen Toonz"
-                                  image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
-                                  id={217} stats={stats}/>
-                        <Trending collection="The Doge Pound"
-                                  image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
-                                  id={763} stats={stats}/>
-                        <Trending collection="World of Women"
-                                  image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
-                                  id={122} stats={stats}/>
+                        <TrendingCard collection="Ape Wives"
+                                      image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
+                                      id={349} stats={stats}/>
+                        <TrendingCard collection="Degen Toonz"
+                                      image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
+                                      id={217} stats={stats}/>
+                        <TrendingCard collection="The Doge Pound"
+                                      image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
+                                      id={763} stats={stats}/>
+                        <TrendingCard collection="World of Women"
+                                      image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
+                                      id={122} stats={stats}/>
                     </Group>
                 </Col>
             </Grid>

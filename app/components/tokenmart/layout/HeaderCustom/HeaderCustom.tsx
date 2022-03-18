@@ -1,4 +1,5 @@
 import {
+    Anchor,
     Avatar,
     Burger,
     Button,
@@ -86,11 +87,7 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                     placement="end"
                     gutter={1}
                     control={
-                        <a
-                            href={link.link}
-                            className={classes.link}
-                            onClick={(event) => event.preventDefault()}
-                        >
+                        <a href={link.link} className={classes.link}>
                             <Center>
                                 <span
                                     className={classes.linkLabel}>{link.label}</span>
@@ -109,7 +106,6 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                 key={link.label}
                 href={link.link}
                 className={classes.link}
-                onClick={(event) => event.preventDefault()}
             >
                 {link.label}
             </a>
@@ -134,13 +130,15 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                             className={classes.burger}
                             size="sm"
                         />
-                        <Text size="xl" weight="700"
-                              variant="gradient"
-                              gradient={{
-                                  from: 'grape',
-                                  to: 'orange',
-                                  deg: 45
-                              }}>TokenMart</Text>
+                        <Anchor href={"/"}>
+                            <Text size="xl" weight="700"
+                                  variant="gradient"
+                                  gradient={{
+                                      from: 'grape',
+                                      to: 'orange',
+                                      deg: 45
+                                  }}>TokenMart</Text>
+                        </Anchor>
                     </Group>
                     <Group spacing={5} className={classes.links}>
                         {items}
