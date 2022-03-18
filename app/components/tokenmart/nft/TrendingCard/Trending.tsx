@@ -26,6 +26,13 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
     },
 
+    rating: {
+        position: 'absolute',
+        top: theme.spacing.xs,
+        right: theme.spacing.xs + 2,
+        pointerEvents: 'none',
+    },
+
     infoSection: {
         paddingLeft: "10px",
     }
@@ -54,6 +61,11 @@ export default function Trending({
         <Card.Section className={classes.imageSection}>
             <Image src={image}/>
         </Card.Section>
+
+        <Badge className={classes.rating} variant="gradient"
+               gradient={{ from: 'orange', to: 'red', deg: 30 }}>
+            Trending
+        </Badge>
 
         <Group position="apart" mt="xs">
             <Text size="xs" weight={500} color="dimmed">{collection}</Text>

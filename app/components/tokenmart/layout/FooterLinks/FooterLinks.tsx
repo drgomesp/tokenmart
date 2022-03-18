@@ -11,7 +11,7 @@ import { BrandInstagram, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
 const useStyles = createStyles((theme) => ({
     footer: {
         // marginTop: 100,
-        paddingTop: theme.spacing.xl,
+        paddingTop: theme.spacing.md,
         position: "absolute",
         width: '100%',
         bottom: 0,
@@ -87,9 +87,9 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: theme.spacing.xl,
-        paddingTop: theme.spacing.xl,
-        paddingBottom: theme.spacing.xl,
+        marginTop: theme.spacing.xl / 1.5,
+        paddingTop: theme.spacing.xl / 4,
+        paddingBottom: theme.spacing.xl / 2,
         borderTop: `1px solid ${
             theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
         }`,

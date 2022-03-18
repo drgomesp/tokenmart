@@ -10,7 +10,7 @@ import {
     Title
 } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
-import Trending from "~/components/tokenmart/nft/Trending";
+import Trending from "~/components/tokenmart/nft/TrendingCard/Trending";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -87,9 +87,8 @@ export function FeaturesTitle() {
         <div className={classes.wrapper}>
             <Grid gutter={50}>
                 <Col span={6} md={6}>
-
-                    <Title className={classes.title}>
-                        <Title className={classes.title}>
+                    <Title order={2} className={classes.title}>
+                        <Text className={classes.title}>
                             <Text component="span" variant="gradient"
                                   gradient={{
                                       from: 'grape',
@@ -101,7 +100,7 @@ export function FeaturesTitle() {
                             <Text color="dimmed">
                                 The marketplace for your most valuable NFTs
                             </Text>
-                        </Title>
+                        </Text>
                     </Title>
 
                     <Group spacing={"sm"}>

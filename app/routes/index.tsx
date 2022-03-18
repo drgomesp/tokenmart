@@ -1,7 +1,13 @@
 import { AppShell, } from '@mantine/core';
-import { HeaderCustom } from "~/components/HeaderCustom/HeaderCustom";
-import { FeaturesTitle } from "~/components/FeaturesTitle/FeaturesTitle";
-import { FooterLinks } from "~/components/FooterLinks/FooterLinks";
+import {
+    HeaderCustom
+} from "~/components/tokenmart/layout/HeaderCustom/HeaderCustom";
+import {
+    FeaturesTitle
+} from "~/components/tokenmart/layout/FeaturesTitle/FeaturesTitle";
+import {
+    FooterLinks
+} from "~/components/tokenmart/layout/FooterLinks/FooterLinks";
 
 const links = [
     { "link": "/explore", "label": "Browse" },
