@@ -13,9 +13,10 @@ export default function handleRequest(
                                                url={request.url}/>);
     responseHeaders.set('Content-Type', 'text/html');
 
-    const refreshMetaTag = "<meta http-equiv=\"refresh\" content=\"5\" >";
+    // const refreshMetaTag = "<meta http-equiv=\"refresh\" content=\"5\" >";
     return new Response(
-        `<!DOCTYPE html>${refreshMetaTag}${injectStylesIntoStaticMarkup(markup)}`,
+        `<!DOCTYPE html>${injectStylesIntoStaticMarkup(markup)}`,
+        // `<!--<!DOCTYPE html>${refreshMetaTag}${injectStylesIntoStaticMarkup(markup)}-->`,
         {
             status: responseStatusCode,
             headers: responseHeaders,

@@ -35,7 +35,8 @@ export default function App() {
 }
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
-    const [ colorScheme, setColorScheme ] = useState<ColorScheme>("light");
+    const [
+        colorScheme, setColorScheme ] = useState<ColorScheme>("light");
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
@@ -45,7 +46,19 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
             toggleColorScheme={toggleColorScheme}
         >
             <MantineProvider
-                theme={{ colorScheme }}
+                theme={{
+                    // linear-gradient(to bottom,  10%, #ec8c69 90%)
+                    // primaryColor: 'pink',
+                    primaryColor: 'pink',
+                    colorScheme,
+                    // fontFamily: 'Open Sans, Verdana, sans-serif',
+                    headings: { fontFamily: 'Greycliff CF, sans-serif' },
+                    other: {
+                        fontFamilySecondary: 'Arial',
+                        lineHeights: [ 1.2, 1.4, 1.6, 1.8, 1.95 ],
+                        reduceMotion: true,
+                    },
+                }}
                 withNormalizeCSS
                 withGlobalStyles
             >
