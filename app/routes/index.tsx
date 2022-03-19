@@ -1,4 +1,4 @@
-import { AppShell, Divider, } from '@mantine/core';
+import { AppShell, } from '@mantine/core';
 import {
     HeaderCustom
 } from "~/components/tokenmart/layout/HeaderCustom/HeaderCustom";
@@ -11,7 +11,7 @@ import {
 import RecentPurchases
     from "~/components/tokenmart/nft/RecentPurchases/RecentPurchases";
 import RecentlyListed
-    from "~/components/tokenmart/nft/RecentlyListed/RecentlyListed";
+    from "~/components/tokenmart/nft/RecentListings/RecentlyListed";
 import links from "~/links";
 
 export default function Index() {
@@ -31,7 +31,7 @@ export default function Index() {
             >
                 <FeaturesTitle/>
 
-                <RecentPurchases/><Divider/>
+                <RecentPurchases/>
 
                 <RecentlyListed/>
 

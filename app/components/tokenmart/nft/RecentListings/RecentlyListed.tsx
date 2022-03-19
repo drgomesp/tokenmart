@@ -5,7 +5,6 @@ import StandardCard from "~/components/tokenmart/nft/StandardCard/StandardCard";
 const useStyles = createStyles((theme) => ({
     wrapper: {
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-        backgroundColor: "white",
     },
 
     child: {
@@ -31,7 +30,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export default function RecentPurchases() {
+export default function RecentListings() {
     const { classes } = useStyles();
 
     return (
@@ -46,7 +45,7 @@ export default function RecentPurchases() {
                                   to: 'orange',
                                   deg: 128,
                               }}>
-                            Recent Purchases
+                            New Listings
                         </Text>
                         <Text color={"dimmed"}>
                             Discover the most wanted items of right now
