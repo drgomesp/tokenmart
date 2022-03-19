@@ -1,6 +1,6 @@
 import {
     Anchor,
-    Avatar,
+    Badge,
     Burger,
     Button,
     Center,
@@ -16,12 +16,14 @@ import {
 import { useBooleanToggle } from '@mantine/hooks';
 import { ChevronDown, Wallet } from 'tabler-icons-react';
 import { useState } from "react";
+import ConnectButton
+    from "~/components/tokenmart/wallet/ConnectButton/ConnectButton";
 
 const HEADER_HEIGHT = 50;
 
 const useStyles = createStyles((theme) => ({
     outer: {
-        borderBottom: `1px solid ${theme.colors.gray[7]}`
+        borderBottom: `1px solid ${theme.colors.gray[4]}`
     },
     inner: {
         height: HEADER_HEIGHT,
@@ -58,15 +60,25 @@ const useStyles = createStyles((theme) => ({
     },
     providerButton: {
         root: {
-            padding: "5px",
-            height: 42,
+            height: 60,
             width: 200,
         }
+    },
+    table: {
+        maxWidth: 235,
+    },
+    modal: {
+        maxWidth: 285,
+        margin: "0 auto"
     }
 }));
 
 interface HeaderActionProps {
     links: { link: string; label: string; links: { link: string; label: string }[] }[];
+}
+
+function connect(params: any) {
+    console.log(params)
 }
 
 export function HeaderCustom({ links }: HeaderActionProps) {
@@ -165,62 +177,62 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                         Connect Wallet
                     </Button>
 
-                    <Modal
-                        opened={modalOpened}
-                        onClose={() => setModalModalOpened(false)}
-                        title={<Text>
-                            Connect Wallet using your favorite
-                            provider</Text>}
+                    <Modal className={classes.modal}
+                           centered
+                           opened={modalOpened}
+                           onClose={() => setModalModalOpened(false)}
+                           title={<Text size={"md"} weight={100}>
+                               Connect Wallet using your favorite
+                               provider:</Text>}
                     >
-                        <Table>
+                        <Table className={classes.table}>
                             <tbody>
                             <tr>
                                 <td>
-                                    <Button fullWidth
-                                            className={classes.providerButton}
-                                            size={"lg"}
-                                            variant={"subtle"}>
-                                        <Group>
-                                            <Avatar style={{ padding: 5 }}
-                                                    size={"md"}
-                                                    src="img/logos/metamask-logo.png"/>
-                                            <Text size={"md"}
-                                                  color={"dimmed"}>MetaMask</Text>
-                                        </Group>
-                                    </Button>
+                                    <ConnectButton enabled={true}
+                                                   onClick={connect}
+                                                   provider={"metamask"}
+                                                   label={"MetaMask"}
+                                                   srcExt={"png"}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <Button style={{ padding: 5 }}
-                                            fullWidth
-                                            className={classes.providerButton}
-                                            size={"lg"}
-                                            variant={"subtle"}>
-                                        <Group>
-                                            <Avatar size={"md"}
-                                                    src="img/logos/walletconnect-logo.webp"/>
-                                            <Text size={"md"} color={"dimmed"}>Wallet
-                                                Connect</Text>
-                                        </Group>
-                                    </Button>
+                                    <Badge style={{
+                                        position: 'relative',
+                                        top: 15,
+                                        right: 5,
+                                        pointerEvents: 'none',
+                                        zIndex: 999,
+                                    }} variant="gradient" gradient={{
+                                        from: 'orange',
+                                        to: 'red'
+                                    }}>soon</Badge>
+                                    <ConnectButton enabled={false}
+                                                   onClick={connect}
+                                                   provider={"walletconnect"}
+                                                   label={"walletconnect"}
+                                                   srcExt={"webp"}/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <Button fullWidth
-                                            className={classes.providerButton}
-                                            size={"lg"}
-                                            variant={"subtle"}>
-                                        <Group>
-                                            <Avatar
-                                                style={{ padding: 5 }}
-                                                size={"md"}
-                                                src="img/logos/fortmatic-logo.webp"/>
-                                            <Text size={"md"}
-                                                  color={"dimmed"}>Fortmatic</Text>
-                                        </Group>
-                                    </Button>
+                                    <Badge style={{
+                                        position: 'relative',
+                                        top: 15,
+                                        right: 5,
+                                        marginTop: 0,
+                                        pointerEvents: 'none',
+                                        zIndex: 999,
+                                    }} variant="gradient" gradient={{
+                                        from: 'orange',
+                                        to: 'red'
+                                    }}>soon</Badge>
+                                    <ConnectButton enabled={false}
+                                                   onClick={connect}
+                                                   provider={"fortmatic"}
+                                                   label={"Fortmatic"}
+                                                   srcExt={"webp"}/>
                                 </td>
                             </tr>
                             </tbody>

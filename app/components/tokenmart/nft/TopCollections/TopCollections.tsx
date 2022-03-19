@@ -53,8 +53,12 @@ export default function TopCollections() {
                             <tbody>
                             <tr>
                                 <td>
+                                    <Text size={"lg"} weight={700}
+                                          color={"dimmed"}>#1</Text>
+                                </td>
+                                <td>
                                     <Avatar
-                                        size={"md"}
+                                        size={"lg"}
                                         src={"/img/nfts/world-of-women.gif"}>
                                     </Avatar>
                                 </td>
@@ -64,8 +68,12 @@ export default function TopCollections() {
                             </tr>
                             <tr>
                                 <td>
+                                    <Text size={"lg"} weight={700}
+                                          color={"dimmed"}>#2</Text>
+                                </td>
+                                <td>
                                     <Avatar
-                                        size={"md"}
+                                        size={"lg"}
                                         src={"/img/nfts/degen-toonz.gif"}>
                                     </Avatar>
                                 </td>
@@ -73,8 +81,12 @@ export default function TopCollections() {
                             </tr>
                             <tr>
                                 <td>
+                                    <Text size={"lg"} weight={700}
+                                          color={"dimmed"}>#3</Text>
+                                </td>
+                                <td>
                                     <Avatar
-                                        size={"md"}
+                                        size={"lg"}
                                         src={"/img/nfts/desperate-ape-wives.jpg"}>
                                     </Avatar>
                                 </td>
@@ -84,8 +96,12 @@ export default function TopCollections() {
                             </tr>
                             <tr>
                                 <td>
+                                    <Text size={"lg"} weight={700}
+                                          color={"dimmed"}>#4</Text>
+                                </td>
+                                <td>
                                     <Avatar
-                                        size={"md"}
+                                        size={"lg"}
                                         src={"/img/nfts/bored-ape.png"}>
                                     </Avatar>
                                 </td>
