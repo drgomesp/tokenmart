@@ -54,16 +54,15 @@ export default function RecentListings() {
                 </Col>
 
                 <Group className={classes.purchases}>
-                    <StandardCard collection="Bored Ape"
-                                  image={`img/nfts/bored-ape/${Math.floor(Math.random() * 10) + 1}.png`}
+                    <StandardCard collection="Degen Toonz"
+                                  image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
                                   id={349}/>
 
                     <StandardCard collection="Ape Wives"
                                   image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
                                   id={349}/>
-
-                    <StandardCard collection="Degen Toonz"
-                                  image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
+                    <StandardCard collection="World of Women"
+                                  image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
                                   id={349}/>
                 </Group>
             </Grid>

@@ -13,6 +13,8 @@ import RecentPurchases
 import RecentlyListed
     from "~/components/tokenmart/nft/RecentListings/RecentlyListed";
 import links from "~/links";
+import TopCollections
+    from "~/components/tokenmart/nft/TopCollections/TopCollections";
 
 export default function Index() {
     return (
@@ -34,6 +36,8 @@ export default function Index() {
                 <RecentPurchases/>
 
                 <RecentlyListed/>
+
+                <TopCollections/>
 
             </AppShell>
 
