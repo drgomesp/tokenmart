@@ -5,7 +5,7 @@ import StandardCard from "~/components/tokenmart/nft/StandardCard/StandardCard";
 const useStyles = createStyles((theme) => ({
     wrapper: {
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-        backgroundColor: "white",
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2],
     },
 
     child: {
@@ -42,9 +42,8 @@ export default function RecentPurchases() {
                         <Text className={classes.subtitle}
                               component="span" variant="gradient"
                               gradient={{
-                                  from: 'grape',
-                                  to: 'orange',
-                                  deg: 128,
+                                  from: 'red',
+                                  to: 'grape',
                               }}>
                             Recent Purchases
                         </Text>

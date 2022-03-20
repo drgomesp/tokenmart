@@ -14,6 +14,9 @@ import TrendingCard from "~/components/tokenmart/nft/TrendingCard/TrendingCard";
 
 
 const useStyles = createStyles((theme) => ({
+    outer: {
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    },
     wrapper: {
         maxWidth: 960,
         margin: '0 auto',
@@ -86,63 +89,67 @@ export function FeaturesTitle() {
     ];
 
     return (
-        <div className={classes.wrapper}>
-            <Grid gutter={50}>
-                <Col span={6} md={6}>
-                    <Title order={2} className={classes.title}>
-                        <Text className={classes.title}>
-                            <Text component="span" variant="gradient"
-                                  gradient={{
-                                      from: 'grape',
-                                      to: 'orange',
-                                      deg: 175,
-                                  }} inherit>
-                                Discover, Collect, Create and Sell
+        <div className={classes.outer}>
+            <div className={classes.wrapper}>
+                <Grid gutter={50}>
+                    <Col span={6} md={6}>
+                        <Title order={2} className={classes.title}>
+                            <Text className={classes.title}>
+                                <Text component="span" variant="gradient"
+                                      gradient={{
+                                          from: 'red',
+                                          to: 'grape',
+                                      }} inherit>
+                                    Discover, Collect, Create and Sell
+                                </Text>
+                                <Text weight={500} color="dimmed">
+                                    The marketplace for your most valuable NFTs
+                                </Text>
                             </Text>
-                            <Text weight={500} color="dimmed">
-                                The marketplace for your most valuable NFTs
-                            </Text>
-                        </Text>
-                    </Title>
+                        </Title>
 
-                    <Group spacing={"sm"}>
-                        <Button
-                            color={"pink"}
-                            variant="outline"
-                            size="sm"
-                            radius="md"
-                            mt="sm"
-                        >
-                            Sell NFTs
-                        </Button>
-                        <Button
-                            variant="gradient"
-                            gradient={{ deg: 133, from: 'pink', to: 'red' }}
-                            size="sm"
-                            radius="md"
-                            mt="sm"
-                        >
-                            Explore NFTs
-                        </Button>
-                    </Group>
-                </Col>
-                <Col span={6} md={6}>
-                    <Group>
-                        <TrendingCard collection="Ape Wives"
-                                      image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
-                                      id={349} stats={stats}/>
-                        <TrendingCard collection="Degen Toonz"
-                                      image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
-                                      id={217} stats={stats}/>
-                        <TrendingCard collection="The Doge Pound"
-                                      image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
-                                      id={763} stats={stats}/>
-                        <TrendingCard collection="World of Women"
-                                      image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
-                                      id={122} stats={stats}/>
-                    </Group>
-                </Col>
-            </Grid>
+                        <Group spacing={"sm"}>
+                            <Button
+                                color={"pink"}
+                                variant="outline"
+                                size="sm"
+                                radius="md"
+                                mt="sm"
+                            >
+                                Sell NFTs
+                            </Button>
+                            <Button
+                                variant="gradient"
+                                gradient={{
+                                    from: 'red',
+                                    to: 'grape',
+                                }}
+                                size="sm"
+                                radius="md"
+                                mt="sm"
+                            >
+                                Explore NFTs
+                            </Button>
+                        </Group>
+                    </Col>
+                    <Col span={6} md={6}>
+                        <Group>
+                            <TrendingCard collection="Ape Wives"
+                                          image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
+                                          id={349} stats={stats}/>
+                            <TrendingCard collection="Degen Toonz"
+                                          image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
+                                          id={217} stats={stats}/>
+                            <TrendingCard collection="The Doge Pound"
+                                          image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
+                                          id={763} stats={stats}/>
+                            <TrendingCard collection="World of Women"
+                                          image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
+                                          id={122} stats={stats}/>
+                        </Group>
+                    </Col>
+                </Grid>
+            </div>
         </div>
     );
 }

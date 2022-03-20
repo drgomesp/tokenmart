@@ -1,10 +1,9 @@
 import { Avatar, Col, createStyles, Grid, Table, Text } from "@mantine/core";
-import React from "react";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-        backgroundColor: "white",
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     },
     child: {
         margin: "0 auto",
@@ -37,9 +36,8 @@ export default function TopCollections() {
                         <Text className={classes.subtitle}
                               component="span" variant="gradient"
                               gradient={{
-                                  from: 'grape',
-                                  to: 'orange',
-                                  deg: 128,
+                                  from: 'red',
+                                  to: 'grape',
                               }}>
                             Top Collections
                         </Text>

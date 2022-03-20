@@ -9,7 +9,6 @@ import {
 
 import type { ColorScheme } from "@mantine/core";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-
 import { useState } from "react";
 
 export default function App() {
@@ -36,23 +35,21 @@ export default function App() {
 }
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
-    const [
-        colorScheme, setColorScheme ] = useState<ColorScheme>("light");
+    const [ colorScheme, setColorScheme ] = useState<ColorScheme>("light")
+
     const toggleColorScheme = (value?: ColorScheme) =>
         setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
     return (
         <ColorSchemeProvider
             colorScheme={colorScheme}
-            toggleColorScheme={toggleColorScheme}
-        >
+            toggleColorScheme={toggleColorScheme}>
             <MantineProvider
                 theme={{
                     // linear-gradient(to bottom,  10%, #ec8c69 90%)
                     // primaryColor: 'pink',
                     primaryColor: 'pink',
                     colorScheme,
-                    // fontFamily: 'Open Sans, Verdana, sans-serif',
                     headings: { fontFamily: 'Greycliff CF, sans-serif' },
                     other: {
                         fontFamilySecondary: 'Arial',

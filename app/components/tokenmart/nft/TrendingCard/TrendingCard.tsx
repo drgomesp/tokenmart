@@ -1,12 +1,4 @@
-import {
-    Anchor,
-    Badge,
-    Card,
-    createStyles,
-    Group,
-    Image,
-    Text
-} from "@mantine/core";
+import { Badge, Card, createStyles, Group, Image, Text } from "@mantine/core";
 
 interface TrendingProps {
     id: number;
@@ -22,7 +14,8 @@ const useStyles = createStyles((theme) => ({
     card: {
         maxWidth: "186px",
         maxHeight: "224px",
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+        border: 0,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     },
 
     title: {
@@ -65,25 +58,26 @@ export default function TrendingCard({
         </div>
     ));
 
-    return <Anchor href="https://mantine.dev/" target="_blank">
-        <Card withBorder p="xs" className={classes.card} radius="md">
-            <Card.Section className={classes.imageSection}>
-                <Image src={image}/>
-            </Card.Section>
+    return <Card withBorder p="xs" className={classes.card} radius="md">
+        <Card.Section className={classes.imageSection}>
+            <Image src={image}/>
+        </Card.Section>
 
-            <Badge className={classes.rating} variant="gradient"
-                   gradient={{ from: 'orange', to: 'red', deg: 30 }}>
-                Trending
+        <Badge className={classes.rating} variant="gradient"
+               gradient={{
+                   from: 'grape',
+                   to: 'indigo',
+               }}>
+            Trending
+        </Badge>
+
+        <Group position="apart" mt="xs">
+            <Text size="xs" weight={500}
+                  color="dimmed">{collection}</Text>
+            <Badge size="sm" radius="xl" variant={"dot"}>
+                #{Math.floor(Math.random() * 998) + 1}
             </Badge>
-
-            <Group position="apart" mt="xs">
-                <Text size="xs" weight={500}
-                      color="dimmed">{collection}</Text>
-                <Badge size="sm" radius="xl" variant={"dot"}>
-                    #{Math.floor(Math.random() * 998) + 1}
-                </Badge>
-            </Group>
-        </Card>
-    </Anchor>
+        </Group>
+    </Card>
 }
 

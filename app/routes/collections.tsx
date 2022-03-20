@@ -1,11 +1,7 @@
 import { AppShell, Title } from "@mantine/core";
-import {
-    HeaderCustom
-} from "~/components/tokenmart/layout/HeaderCustom/HeaderCustom";
-import {
-    FooterLinks
-} from "~/components/tokenmart/layout/FooterLinks/FooterLinks";
-import links from "~/links";
+import { Header } from "~/components/tokenmart/layout/Header/Header";
+import { Footer } from "~/components/tokenmart/layout/FooterLinks/Footer";
+import navlinks from "~/navlinks";
 
 export default function About() {
     return (
@@ -14,11 +10,12 @@ export default function About() {
                 padding="xl"
                 // navbar={<NavbarCustom/>}
                 // @ts-ignore
-                header={<HeaderCustom links={links()}/>}
+                header={<Header links={navlinks()}/>}
                 styles={(theme) => ({
                     main: {
                         padding: 20,
-                        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0]
+                        minHeight: 550,
+                        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
                     },
                 })}
             >
@@ -26,7 +23,7 @@ export default function About() {
 
             </AppShell>
 
-            <FooterLinks data={[
+            <Footer data={[
                 {
                     title: "About",
                     links: [

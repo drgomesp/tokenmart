@@ -1,4 +1,4 @@
-export default function links() {
+export default function navlinks() {
     return [
         { "link": "/explore", "label": "Explore" },
         { "link": "/collections", "label": "Collections" },

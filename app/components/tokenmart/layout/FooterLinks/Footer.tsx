@@ -10,14 +10,11 @@ import { BrandInstagram, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
     footer: {
-        paddingTop: theme.spacing.md,
+        padding: `0 ${theme.spacing.lg}px ${theme.spacing.lg}px`,
         position: "relative",
         width: '100%',
-        bottom: -96,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-        borderTop: `1px solid ${
-            theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
-        }`,
+        bottom: -50,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : "white",
     },
 
     logo: {
@@ -86,11 +83,11 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: theme.spacing.xl / 1.5,
-        paddingTop: theme.spacing.xl / 4,
+        marginTop: theme.spacing.xl * 1.5,
+        paddingTop: theme.spacing.xl / 2,
         paddingBottom: theme.spacing.xl / 2,
         borderTop: `1px solid ${
-            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
+            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[0]
         }`,
 
         [theme.fn.smallerThan('sm')]: {
@@ -112,8 +109,9 @@ interface FooterLinksProps {
     }[];
 }
 
-export function FooterLinks({ data }: FooterLinksProps) {
+export function Footer({ data }: FooterLinksProps) {
     const { classes } = useStyles();
+
     const groups = data.map((group) => {
         const links = group.links.map((link, index) => (
             <Text<'a'>

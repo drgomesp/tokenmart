@@ -9,7 +9,7 @@ import {
     Container,
     createStyles,
     Group,
-    Header,
+    Header as MantineHeader,
     Menu,
     Modal,
     Table,
@@ -25,10 +25,12 @@ declare let window: any;
 const HEADER_HEIGHT = 50;
 
 const useStyles = createStyles((theme) => ({
-    outer: {
-        borderBottom: `1px solid ${theme.colors.gray[4]}`
+    wrapper: {
+        // borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.dark[0]}`,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.dark[0],
     },
     inner: {
+        maxWidth: 960,
         height: HEADER_HEIGHT,
         display: 'flex',
         justifyContent: 'space-between',
@@ -64,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     providerButton: {
         root: {
             height: 60,
-            width: 200,
+            maxWidth: 200,
         }
     },
     table: {
@@ -78,7 +80,7 @@ const useStyles = createStyles((theme) => ({
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
         border: 0,
-        borderLeft: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+        borderLeft: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white}`,
     },
 }));
 
@@ -86,15 +88,15 @@ interface HeaderActionProps {
     links: { link: string; label: string; links: { link: string; label: string }[] }[];
 }
 
-export function HeaderCustom({ links }: HeaderActionProps) {
+export function Header({ links }: HeaderActionProps) {
     const { classes } = useStyles();
 
     let address: string | null = null;
     if (typeof window !== 'undefined') {
 
         // const sig = await signer.signMessage("Hello World");
-        window.ethereum.on('accountsChanged', (addr: any) => {
-            if (!addr || addr.length === 0) {
+        window.ethereum.on('accountsChanged', (address: any) => {
+            if (!address || address.length === 0) {
                 localStorage.removeItem("address");
                 location.reload();
             }
@@ -150,13 +152,8 @@ export function HeaderCustom({ links }: HeaderActionProps) {
     const [ modalOpened, setModalModalOpened ] = useState(false);
 
     return (
-        <>
-            <Header height={HEADER_HEIGHT}
-                    sx={{
-                        borderBottom: classes.outer,
-                        maxWidth: 960,
-                        margin: '0 auto'
-                    }}>
+        <div className={classes.wrapper}>
+            <MantineHeader height={HEADER_HEIGHT}>
                 <Container className={classes.inner} fluid>
                     <Group>
                         <Burger
@@ -169,13 +166,12 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                             <Text size="xl" weight="700"
                                   variant="gradient"
                                   gradient={{
-                                      from: 'grape',
-                                      to: 'orange',
-                                      deg: 45
+                                      from: 'red',
+                                      to: 'grape',
                                   }}>TokenMart</Text>
                         </Anchor>
                     </Group>
-                    <Group spacing={5} className={classes.links}>
+                    <Group spacing={10} className={classes.links}>
                         {items}
                     </Group>
 
@@ -184,30 +180,28 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                             onClick={() => !address ? setModalModalOpened(true) : undefined}
                             variant="gradient"
                             gradient={{
-                                from: 'grape',
-                                to: 'orange',
-                                deg: 90
+                                from: 'red',
+                                to: 'grape',
                             }}
-                            leftIcon={!address ? <Wallet size={20}/> :
+                            leftIcon={!address ? <Wallet size={22}/> :
                                 <Avatar size={"xs"}
                                         src={"img/logos/metamask-logo.png"}/>}
-                            size="md"
+                            size="sm"
                             // radius="md"
                             styles={{
                                 root: {
-                                    paddingRight: address ? 8 : 15,
-                                    paddingLeft: 12,
+                                    fontWeight: 700,
+                                    padding: '0 10px',
                                     borderTopRightRadius: address ? 0 : 4,
                                     borderBottomRightRadius: address ? 0 : 4,
-                                    height: 32
+                                    height: 28
                                 },
-                                rightIcon: { marginLeft: 5 },
                             }}>
                             {!address ? "Connect Wallet" :
                                 <Text style={{
                                     fontFamily: `Greycliff CF`,
                                 }}
-                                      size={"sm"} weight={500}
+                                      size={"xs"} weight={300}
                                       color={"white"}>
                                     {address.substring(0, 5)}
                                     ...
@@ -219,8 +213,8 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                                 <ActionIcon
                                     className={classes.menuControl}
                                     variant="filled"
-                                    color={"orange"}
-                                    size={32}>
+                                    color={"grape"}
+                                    size={28}>
                                     <ChevronDown size={20}/>
                                 </ActionIcon>
                             }
@@ -256,12 +250,12 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                                     <Badge style={{
                                         position: 'relative',
                                         top: 15,
-                                        right: 5,
+                                        left: 175,
                                         pointerEvents: 'none',
                                         zIndex: 999,
                                     }} variant="gradient" gradient={{
-                                        from: 'orange',
-                                        to: 'red'
+                                        from: 'indigo',
+                                        to: 'pink',
                                     }}>soon</Badge>
                                     <ConnectButton enabled={false}
                                                    provider={"walletconnect"}
@@ -274,13 +268,13 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                                     <Badge style={{
                                         position: 'relative',
                                         top: 15,
-                                        right: 5,
+                                        left: 175,
                                         marginTop: 0,
                                         pointerEvents: 'none',
                                         zIndex: 999,
                                     }} variant="gradient" gradient={{
-                                        from: 'orange',
-                                        to: 'red'
+                                        from: 'indigo',
+                                        to: 'pink',
                                     }}>soon</Badge>
                                     <ConnectButton enabled={false}
                                                    provider={"fortmatic"}
@@ -292,8 +286,8 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                         </Table>
                     </Modal>
                 </Container>
-            </Header>
-        </>
+            </MantineHeader>
+        </div>
     );
 
 }

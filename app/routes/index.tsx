@@ -1,34 +1,27 @@
 import { AppShell, } from '@mantine/core';
-import {
-    HeaderCustom
-} from "~/components/tokenmart/layout/HeaderCustom/HeaderCustom";
+import { Header } from "~/components/tokenmart/layout/Header/Header";
 import {
     FeaturesTitle
 } from "~/components/tokenmart/layout/FeaturesTitle/FeaturesTitle";
-import {
-    FooterLinks
-} from "~/components/tokenmart/layout/FooterLinks/FooterLinks";
+import { Footer } from "~/components/tokenmart/layout/FooterLinks/Footer";
 import RecentPurchases
     from "~/components/tokenmart/nft/RecentPurchases/RecentPurchases";
-import RecentlyListed
-    from "~/components/tokenmart/nft/RecentListings/RecentlyListed";
-import links from "~/links";
+import RecentlyListed from "~/components/tokenmart/nft/NewListings/NewListings";
+import navlinks from "~/navlinks";
 import TopCollections
     from "~/components/tokenmart/nft/TopCollections/TopCollections";
 
-
 export default function Index() {
     return (
-        <div className={"container"}>
+        <>
             <AppShell
                 padding="xl"
                 // navbar={<NavbarCustom/>}
                 // @ts-ignore
-                header={<HeaderCustom links={links()}/>}
+                header={<Header links={navlinks()}/>}
                 styles={(theme) => ({
                     main: {
                         padding: 0,
-                        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0]
                     },
                 })}
             >
@@ -42,7 +35,7 @@ export default function Index() {
 
             </AppShell>
 
-            <FooterLinks data={[
+            <Footer data={[
                 {
                     title: "About",
                     links: [
@@ -65,7 +58,7 @@ export default function Index() {
                 }
 
             ]}/>
-        </div>
+        </>
     );
 }
 
