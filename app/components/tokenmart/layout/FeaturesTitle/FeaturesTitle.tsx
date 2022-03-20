@@ -12,6 +12,7 @@ import {
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
 import TrendingCard from "~/components/tokenmart/nft/TrendingCard/TrendingCard";
 
+
 const useStyles = createStyles((theme) => ({
     wrapper: {
         maxWidth: 960,

@@ -16,6 +16,7 @@ import links from "~/links";
 import TopCollections
     from "~/components/tokenmart/nft/TopCollections/TopCollections";
 
+
 export default function Index() {
     return (
         <div className={"container"}>

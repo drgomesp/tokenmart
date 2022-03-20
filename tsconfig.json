@@ -1,7 +1,38 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "remix.env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2019"
+    ],
+    "paths": {
+      "~/*": [
+        "./app/*"
+      ],
+      "crypto": [
+        "./node_modules/crypto-browserify"
+      ],
+      "stream": [
+        "./node_modules/stream-browserify"
+      ],
+      "assert": [
+        "./node_modules/assert"
+      ],
+      "http": [
+        "./node_modules/stream-http"
+      ],
+      "https": [
+        "./node_modules/https-browserify"
+      ],
+      "os": [
+        "./node_modules/os-browserify"
+      ]
+    },
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
@@ -10,10 +41,9 @@
     "target": "ES2019",
     "strict": true,
     "baseUrl": ".",
-    "paths": {
-      "~/*": ["./app/*"]
-    },
-
+    "types": [
+      "node"
+    ],
     // Remix takes care of building everything in `remix build`.
     "noEmit": true
   }

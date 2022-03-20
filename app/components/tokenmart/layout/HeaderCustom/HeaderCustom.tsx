@@ -1,5 +1,7 @@
 import {
+    ActionIcon,
     Anchor,
+    Avatar,
     Badge,
     Burger,
     Button,
@@ -13,11 +15,12 @@ import {
     Table,
     Text,
 } from '@mantine/core';
-import { useBooleanToggle } from '@mantine/hooks';
-import { ChevronDown, Wallet } from 'tabler-icons-react';
+import { ChevronDown, Logout, Wallet } from 'tabler-icons-react';
 import { useState } from "react";
 import ConnectButton
     from "~/components/tokenmart/wallet/ConnectButton/ConnectButton";
+
+declare let window: any;
 
 const HEADER_HEIGHT = 50;
 
@@ -70,20 +73,40 @@ const useStyles = createStyles((theme) => ({
     modal: {
         maxWidth: 285,
         margin: "0 auto"
-    }
+    },
+    menuControl: {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        border: 0,
+        borderLeft: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+    },
 }));
 
 interface HeaderActionProps {
     links: { link: string; label: string; links: { link: string; label: string }[] }[];
 }
 
-function connect(params: any) {
-    console.log(params)
-}
-
 export function HeaderCustom({ links }: HeaderActionProps) {
     const { classes } = useStyles();
-    const [ opened, toggleOpened ] = useBooleanToggle(false);
+
+    let address: string | null = null;
+    if (typeof window !== 'undefined') {
+
+        // const sig = await signer.signMessage("Hello World");
+        window.ethereum.on('accountsChanged', (addr: any) => {
+            if (!addr || addr.length === 0) {
+                localStorage.removeItem("address");
+                location.reload();
+            }
+        })
+
+        window.ethereum.on('chainChanged', () => {
+            console.log('networkChanged')
+        })
+
+        address = localStorage.getItem("address")
+    }
+
     const items = links.map((link) => {
         const menuItems = link.links?.map((item) => (
             <Menu.Item key={item.link}>{item.label}</Menu.Item>
@@ -138,7 +161,7 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                     <Group>
                         <Burger
                             opened={modalOpened}
-                            onClick={() => toggleOpened()}
+                            onClick={() => setModalModalOpened(true)}
                             className={classes.burger}
                             size="sm"
                         />
@@ -156,26 +179,59 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                         {items}
                     </Group>
 
-                    <Button onClick={() => setModalModalOpened(true)}
+                    <Group noWrap spacing={0}>
+                        <Button
+                            onClick={() => !address ? setModalModalOpened(true) : undefined}
                             variant="gradient"
                             gradient={{
                                 from: 'grape',
                                 to: 'orange',
-                                deg: 45
+                                deg: 90
                             }}
-                            rightIcon={<Wallet size={20}/>}
+                            leftIcon={!address ? <Wallet size={20}/> :
+                                <Avatar size={"xs"}
+                                        src={"img/logos/metamask-logo.png"}/>}
                             size="md"
-                            radius="md"
+                            // radius="md"
                             styles={{
                                 root: {
-                                    paddingRight: 8,
+                                    paddingRight: address ? 8 : 15,
                                     paddingLeft: 12,
+                                    borderTopRightRadius: address ? 0 : 4,
+                                    borderBottomRightRadius: address ? 0 : 4,
                                     height: 32
                                 },
                                 rightIcon: { marginLeft: 5 },
                             }}>
-                        Connect Wallet
-                    </Button>
+                            {!address ? "Connect Wallet" :
+                                <Text style={{
+                                    fontFamily: `Greycliff CF`,
+                                }}
+                                      size={"sm"} weight={500}
+                                      color={"white"}>
+                                    {address.substring(0, 5)}
+                                    ...
+                                    {address.substring(address.length - 3, address.length)}
+                                </Text>}
+                        </Button>
+                        {address ? <Menu
+                            control={
+                                <ActionIcon
+                                    className={classes.menuControl}
+                                    variant="filled"
+                                    color={"orange"}
+                                    size={32}>
+                                    <ChevronDown size={20}/>
+                                </ActionIcon>
+                            }
+                            transition="pop"
+                            placement="end">
+                            <Menu.Item color={"gray"}
+                                       icon={<Logout size={16}/>}>
+                                Disconnect
+                            </Menu.Item>
+                        </Menu> : ""}
+                    </Group>
 
                     <Modal className={classes.modal}
                            centered
@@ -190,7 +246,6 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                             <tr>
                                 <td>
                                     <ConnectButton enabled={true}
-                                                   onClick={connect}
                                                    provider={"metamask"}
                                                    label={"MetaMask"}
                                                    srcExt={"png"}/>
@@ -209,7 +264,6 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                                         to: 'red'
                                     }}>soon</Badge>
                                     <ConnectButton enabled={false}
-                                                   onClick={connect}
                                                    provider={"walletconnect"}
                                                    label={"walletconnect"}
                                                    srcExt={"webp"}/>
@@ -229,7 +283,6 @@ export function HeaderCustom({ links }: HeaderActionProps) {
                                         to: 'red'
                                     }}>soon</Badge>
                                     <ConnectButton enabled={false}
-                                                   onClick={connect}
                                                    provider={"fortmatic"}
                                                    label={"Fortmatic"}
                                                    srcExt={"webp"}/>
