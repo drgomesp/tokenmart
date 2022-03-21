@@ -1,15 +1,12 @@
 import { AppShell, } from '@mantine/core';
-import { Header } from "~/components/tokenmart/layout/Header/Header";
-import {
-    FeaturesTitle
-} from "~/components/tokenmart/layout/FeaturesTitle/FeaturesTitle";
-import { Footer } from "~/components/tokenmart/layout/FooterLinks/Footer";
+import { NavHeader } from "~/components/layout/NavHeader/NavHeader";
+import { FeaturesTitle } from "~/components/home/SectionLanding/FeaturesTitle";
+import { Footer } from "~/components/layout/FooterLinks/Footer";
 import RecentPurchases
-    from "~/components/tokenmart/nft/RecentPurchases/RecentPurchases";
-import RecentlyListed from "~/components/tokenmart/nft/NewListings/NewListings";
-import navlinks from "~/navlinks";
+    from "~/components/home/SectionRecentPurchases/RecentPurchases";
+import RecentlyListed from "~/components/home/SectionNewListings/NewListings";
 import TopCollections
-    from "~/components/tokenmart/nft/TopCollections/TopCollections";
+    from "~/components/home/SectionTopCollections/TopCollections";
 
 export default function Index() {
     return (
@@ -18,7 +15,7 @@ export default function Index() {
                 padding="xl"
                 // navbar={<NavbarCustom/>}
                 // @ts-ignore
-                header={<Header links={navlinks()}/>}
+                header={<NavHeader/>}
                 styles={(theme) => ({
                     main: {
                         padding: 0,
@@ -35,29 +32,7 @@ export default function Index() {
 
             </AppShell>
 
-            <Footer data={[
-                {
-                    title: "About",
-                    links: [
-                        { label: "Features", link: "" },
-                        { label: "Team", link: "" },
-                    ],
-                }, {
-                    title: "Help",
-                    links: [
-                        { label: "Creating a Collection", link: "" },
-                        { label: "Listing an NFT", link: "" },
-                    ],
-                }, {
-                    title: "Other",
-                    links: [
-                        { label: "API Documentation", link: "" },
-                        { label: "Help", link: "" },
-                        { label: "Contact Us", link: "" },
-                    ],
-                }
-
-            ]}/>
+            <Footer/>
         </>
     );
 }

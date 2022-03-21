@@ -10,7 +10,7 @@ import {
     Title
 } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
-import TrendingCard from "~/components/tokenmart/nft/TrendingCard/TrendingCard";
+import TrendingCard from "~/components/nft/TrendingCard/TrendingCard";
 
 
 const useStyles = createStyles((theme) => ({

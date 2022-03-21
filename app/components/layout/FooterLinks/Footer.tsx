@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     ActionIcon,
     Container,
@@ -7,6 +6,7 @@ import {
     Text
 } from '@mantine/core';
 import { BrandInstagram, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
+import links from './links'
 
 const useStyles = createStyles((theme) => ({
     footer: {
@@ -102,17 +102,10 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-interface FooterLinksProps {
-    data: {
-        title: string;
-        links: { label: string; link: string }[];
-    }[];
-}
-
-export function Footer({ data }: FooterLinksProps) {
+export function Footer() {
     const { classes } = useStyles();
 
-    const groups = data.map((group) => {
+    const groups = links().map((group) => {
         const links = group.links.map((link, index) => (
             <Text<'a'>
                 key={index}
@@ -132,6 +125,7 @@ export function Footer({ data }: FooterLinksProps) {
             </div>
         );
     });
+
     return (
         <footer className={classes.footer}>
             <Container className={classes.inner}>
