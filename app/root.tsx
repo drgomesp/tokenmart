@@ -35,10 +35,17 @@ export default function App() {
 }
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
-    const [ colorScheme, setColorScheme ] = useState<ColorScheme>("dark")
+    let initialColorScheme: ColorScheme
+    if (typeof window !== 'undefined') {
+        initialColorScheme = localStorage.getItem("colorScheme") as ColorScheme
+    }
 
-    const toggleColorScheme = (value?: ColorScheme) =>
-        setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
+    const [ colorScheme, setColorScheme ] = useState<ColorScheme>(initialColorScheme)
+
+    const toggleColorScheme = (value?: ColorScheme) => {
+        console.log(`toggleColorScheme(${value})`);
+        setColorScheme(value || colorScheme === "dark" ? "light" : "dark");
+    }
 
     return (
         <ColorSchemeProvider
@@ -49,7 +56,7 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
                     // linear-gradient(to bottom,  10%, #ec8c69 90%)
                     // primaryColor: 'pink',
                     primaryColor: 'pink',
-                    colorScheme,
+                    colorScheme: colorScheme,
                     headings: { fontFamily: 'Greycliff CF, sans-serif' },
                     other: {
                         fontFamilySecondary: 'Arial',

@@ -1,5 +1,5 @@
 import { AppShell, Title } from "@mantine/core";
-import { NavHeader } from "~/components/layout/NavHeader/NavHeader";
+import NavHeader from "~/components/layout/NavHeader/NavHeader";
 import { Footer } from "~/components/layout/FooterLinks/Footer";
 
 export default function About() {

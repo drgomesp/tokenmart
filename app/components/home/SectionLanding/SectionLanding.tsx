@@ -15,7 +15,7 @@ import TrendingCard from "~/components/nft/TrendingCard/TrendingCard";
 
 const useStyles = createStyles((theme) => ({
     outer: {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
     },
     wrapper: {
         maxWidth: 960,
@@ -60,7 +60,7 @@ const features = [
     },
 ];
 
-export function FeaturesTitle() {
+export function SectionLanding() {
     const { classes } = useStyles();
 
     const items = features.map((feature) => (

@@ -14,7 +14,6 @@ const useStyles = createStyles((theme) => ({
         position: "relative",
         width: '100%',
         bottom: -50,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : "white",
     },
 
     logo: {

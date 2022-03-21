@@ -5,7 +5,7 @@ import StandardCard from "~/components/nft/StandardCard/StandardCard";
 const useStyles = createStyles((theme) => ({
     wrapper: {
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
     },
 
     child: {
@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export default function NewListings() {
+export default function SectionNewListings() {
     const { classes } = useStyles();
 
     return (

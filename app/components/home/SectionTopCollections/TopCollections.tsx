@@ -3,7 +3,7 @@ import { Avatar, Col, createStyles, Grid, Table, Text } from "@mantine/core";
 const useStyles = createStyles((theme) => ({
     wrapper: {
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2],
     },
     child: {
         margin: "0 auto",

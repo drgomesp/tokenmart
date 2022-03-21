@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export default function RecentPurchases() {
+export default function SectionRecentPurchases() {
     const { classes } = useStyles();
 
     return (

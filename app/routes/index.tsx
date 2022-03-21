@@ -1,10 +1,13 @@
 import { AppShell, } from '@mantine/core';
-import { NavHeader } from "~/components/layout/NavHeader/NavHeader";
-import { FeaturesTitle } from "~/components/home/SectionLanding/FeaturesTitle";
+import NavHeader from "~/components/layout/NavHeader/NavHeader";
+import {
+    SectionLanding
+} from "~/components/home/SectionLanding/SectionLanding";
 import { Footer } from "~/components/layout/FooterLinks/Footer";
-import RecentPurchases
-    from "~/components/home/SectionRecentPurchases/RecentPurchases";
-import RecentlyListed from "~/components/home/SectionNewListings/NewListings";
+import SectionRecentPurchases
+    from "~/components/home/SectionRecentPurchases/SectionRecentPurchases";
+import RecentlyListed
+    from "~/components/home/SectionNewListings/SectionNewListings";
 import TopCollections
     from "~/components/home/SectionTopCollections/TopCollections";
 
@@ -22,9 +25,9 @@ export default function Index() {
                     },
                 })}
             >
-                <FeaturesTitle/>
+                <SectionLanding/>
 
-                <RecentPurchases/>
+                <SectionRecentPurchases/>
 
                 <RecentlyListed/>
 

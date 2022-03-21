@@ -19,16 +19,14 @@ import { ChevronDown, Logout, Wallet } from 'tabler-icons-react';
 import { useState } from "react";
 import ConnectButton from "~/components/wallet/ConnectButton/ConnectButton";
 import links from './links'
+import ColorSchemeToggle
+    from "~/components/layout/ColorSchemeToggle/ColorSchemeToggle";
 
 declare let window: any;
 
 const HEADER_HEIGHT = 50;
 
 const useStyles = createStyles((theme) => ({
-    wrapper: {
-        // borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.dark[0]}`,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.dark[0],
-    },
     inner: {
         maxWidth: 960,
         height: HEADER_HEIGHT,
@@ -84,7 +82,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export function NavHeader() {
+export default function NavHeader() {
     const { classes } = useStyles();
 
     let address: string | null = null;
@@ -128,19 +126,16 @@ export function NavHeader() {
                                 <ChevronDown size={12}/>
                             </Center>
                         </a>
-                    }
-                >
+                    }>
                     {menuItems}
                 </Menu>
             );
         }
 
         return (
-            <a
-                key={link.label}
-                href={link.link}
-                className={classes.link}
-            >
+            <a key={link.label}
+               href={link.link}
+               className={classes.link}>
                 {link.label}
             </a>
         );
@@ -149,142 +144,141 @@ export function NavHeader() {
     const [ modalOpened, setModalModalOpened ] = useState(false);
 
     return (
-        <div className={classes.wrapper}>
-            <MantineHeader height={HEADER_HEIGHT}>
-                <Container className={classes.inner} fluid>
-                    <Group>
-                        <Burger
-                            opened={modalOpened}
-                            onClick={() => setModalModalOpened(true)}
-                            className={classes.burger}
-                            size="sm"
-                        />
-                        <Anchor href={"/"}>
-                            <Text size="xl" weight="700"
-                                  variant="gradient"
-                                  gradient={{
-                                      from: 'red',
-                                      to: 'grape',
-                                  }}>TokenMart</Text>
-                        </Anchor>
-                    </Group>
-                    <Group spacing={10} className={classes.links}>
-                        {items}
-                    </Group>
+        <MantineHeader style={{ border: 0 }} height={HEADER_HEIGHT}>
+            <Container className={classes.inner} fluid>
+                <Group>
+                    <Burger
+                        opened={modalOpened}
+                        onClick={() => setModalModalOpened(true)}
+                        className={classes.burger}
+                        size="sm"
+                    />
+                    <Anchor href={"/"}>
+                        <Text size="xl" weight="700"
+                              variant="gradient"
+                              gradient={{
+                                  from: 'red',
+                                  to: 'grape',
+                              }}>TokenMart</Text>
+                    </Anchor>
+                    <ColorSchemeToggle/>
+                </Group>
+                <Group spacing={10} className={classes.links}>
+                    {items}
+                </Group>
 
-                    <Group noWrap spacing={0}>
-                        <Button
-                            onClick={() => !address ? setModalModalOpened(true) : undefined}
-                            variant="gradient"
-                            gradient={{
-                                from: 'red',
-                                to: 'grape',
+                <Group noWrap spacing={0}>
+                    <Button
+                        onClick={() => !address ? setModalModalOpened(true) : undefined}
+                        variant="gradient"
+                        gradient={{
+                            from: 'red',
+                            to: 'grape',
+                        }}
+                        leftIcon={!address ? <Wallet size={22}/> :
+                            <Avatar size={"xs"}
+                                    src={"img/logos/metamask-logo.png"}/>}
+                        size="sm"
+                        // radius="md"
+                        styles={{
+                            root: {
+                                fontWeight: 700,
+                                padding: '0 10px',
+                                borderTopRightRadius: address ? 0 : 4,
+                                borderBottomRightRadius: address ? 0 : 4,
+                                height: 28
+                            },
+                        }}>
+                        {!address ? "Connect Wallet" :
+                            <Text style={{
+                                fontFamily: `Greycliff CF`,
                             }}
-                            leftIcon={!address ? <Wallet size={22}/> :
-                                <Avatar size={"xs"}
-                                        src={"img/logos/metamask-logo.png"}/>}
-                            size="sm"
-                            // radius="md"
-                            styles={{
-                                root: {
-                                    fontWeight: 700,
-                                    padding: '0 10px',
-                                    borderTopRightRadius: address ? 0 : 4,
-                                    borderBottomRightRadius: address ? 0 : 4,
-                                    height: 28
-                                },
-                            }}>
-                            {!address ? "Connect Wallet" :
-                                <Text style={{
-                                    fontFamily: `Greycliff CF`,
-                                }}
-                                      size={"xs"} weight={300}
-                                      color={"white"}>
-                                    {address.substring(0, 5)}
-                                    ...
-                                    {address.substring(address.length - 3, address.length)}
-                                </Text>}
-                        </Button>
-                        {address ? <Menu
-                            control={
-                                <ActionIcon
-                                    className={classes.menuControl}
-                                    variant="filled"
-                                    color={"grape"}
-                                    size={28}>
-                                    <ChevronDown size={20}/>
-                                </ActionIcon>
-                            }
-                            transition="pop"
-                            placement="end">
-                            <Menu.Item color={"gray"}
-                                       icon={<Logout size={16}/>}>
-                                Disconnect
-                            </Menu.Item>
-                        </Menu> : ""}
-                    </Group>
+                                  size={"xs"} weight={300}
+                                  color={"white"}>
+                                {address.substring(0, 5)}
+                                ...
+                                {address.substring(address.length - 3, address.length)}
+                            </Text>}
+                    </Button>
+                    {address ? <Menu
+                        control={
+                            <ActionIcon
+                                className={classes.menuControl}
+                                variant="filled"
+                                color={"grape"}
+                                size={28}>
+                                <ChevronDown size={20}/>
+                            </ActionIcon>
+                        }
+                        transition="pop"
+                        placement="end">
+                        <Menu.Item color={"gray"}
+                                   icon={<Logout size={16}/>}>
+                            Disconnect
+                        </Menu.Item>
+                    </Menu> : ""}
+                </Group>
 
-                    <Modal className={classes.modal}
-                           centered
-                           opened={modalOpened}
-                           onClose={() => setModalModalOpened(false)}
-                           title={<Text size={"md"} weight={100}>
-                               Connect Wallet using your favorite
-                               provider:</Text>}
-                    >
-                        <Table className={classes.table}>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <ConnectButton enabled={true}
-                                                   provider={"metamask"}
-                                                   label={"MetaMask"}
-                                                   srcExt={"png"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Badge style={{
-                                        position: 'relative',
-                                        top: 15,
-                                        left: 175,
-                                        pointerEvents: 'none',
-                                        zIndex: 999,
-                                    }} variant="gradient" gradient={{
-                                        from: 'indigo',
-                                        to: 'pink',
-                                    }}>soon</Badge>
-                                    <ConnectButton enabled={false}
-                                                   provider={"walletconnect"}
-                                                   label={"walletconnect"}
-                                                   srcExt={"webp"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <Badge style={{
-                                        position: 'relative',
-                                        top: 15,
-                                        left: 175,
-                                        marginTop: 0,
-                                        pointerEvents: 'none',
-                                        zIndex: 999,
-                                    }} variant="gradient" gradient={{
-                                        from: 'indigo',
-                                        to: 'pink',
-                                    }}>soon</Badge>
-                                    <ConnectButton enabled={false}
-                                                   provider={"fortmatic"}
-                                                   label={"Fortmatic"}
-                                                   srcExt={"webp"}/>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </Table>
-                    </Modal>
-                </Container>
-            </MantineHeader>
-        </div>
+                <Modal className={classes.modal}
+                       centered
+                       opened={modalOpened}
+                       onClose={() => setModalModalOpened(false)}
+                       title={<Text size={"md"} weight={100}>
+                           Connect Wallet using your favorite
+                           provider:</Text>}
+                >
+                    <Table className={classes.table}>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <ConnectButton enabled={true}
+                                               provider={"metamask"}
+                                               label={"MetaMask"}
+                                               srcExt={"png"}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <Badge style={{
+                                    position: 'relative',
+                                    top: 15,
+                                    left: 175,
+                                    pointerEvents: 'none',
+                                    zIndex: 999,
+                                }} variant="gradient" gradient={{
+                                    from: 'indigo',
+                                    to: 'pink',
+                                }}>soon</Badge>
+                                <ConnectButton enabled={false}
+                                               provider={"walletconnect"}
+                                               label={"walletconnect"}
+                                               srcExt={"webp"}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <Badge style={{
+                                    position: 'relative',
+                                    top: 15,
+                                    left: 175,
+                                    marginTop: 0,
+                                    pointerEvents: 'none',
+                                    zIndex: 999,
+                                }} variant="gradient" gradient={{
+                                    from: 'indigo',
+                                    to: 'pink',
+                                }}>soon</Badge>
+                                <ConnectButton enabled={false}
+                                               provider={"fortmatic"}
+                                               label={"Fortmatic"}
+                                               srcExt={"webp"}/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                </Modal>
+            </Container>
+        </MantineHeader>
     );
 
 }
