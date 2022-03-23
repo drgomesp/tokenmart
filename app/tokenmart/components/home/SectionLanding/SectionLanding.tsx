@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Col, createStyles, Grid, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
 import TrendingCard from "~/tokenmart/components/nft/TrendingCard/TrendingCard";
+import { ClientOnly } from "remix-utils";
 
 
 const useStyles = createStyles((theme) => ({
@@ -23,6 +24,13 @@ const useStyles = createStyles((theme) => ({
         lineHeight: 1.1,
         marginBottom: theme.spacing.sm,
         color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    },
+
+    emptyCard: {
+        minWidth: 186,
+        minHeight: 224,
+        borderRadius: 8,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     },
 }));
 
@@ -80,6 +88,7 @@ export default function SectionLanding() {
     ];
 
     return (
+
         <div className={classes.outer}>
             <div className={classes.wrapper}>
                 <Grid gutter={50}>
@@ -125,18 +134,30 @@ export default function SectionLanding() {
                     </Col>
                     <Col span={6} md={6}>
                         <Group>
-                            <TrendingCard collection="Ape Wives"
-                                          image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
-                                          id={349} stats={stats}/>
-                            <TrendingCard collection="Degen Toonz"
-                                          image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
-                                          id={217} stats={stats}/>
-                            <TrendingCard collection="The Doge Pound"
-                                          image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
-                                          id={763} stats={stats}/>
-                            <TrendingCard collection="World of Women"
-                                          image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
-                                          id={122} stats={stats}/>
+                            <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
+                                {() => <TrendingCard collection="Ape Wives"
+                                                     image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
+                                                     id={349} stats={stats}/>}
+                            </ClientOnly>
+
+                            <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
+                                {() => <TrendingCard collection="Degen Toonz"
+                                                     image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
+                                                     id={217} stats={stats}/>
+                                }
+                            </ClientOnly>
+
+                            <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
+                                {() => <TrendingCard collection="The Doge Pound"
+                                                     image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
+                                                     id={763} stats={stats}/>}
+                            </ClientOnly>
+
+                            <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
+                                {() => <TrendingCard collection="World of Women"
+                                                     image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
+                                                     id={122} stats={stats}/>}
+                            </ClientOnly>
                         </Group>
                     </Col>
                 </Grid>
