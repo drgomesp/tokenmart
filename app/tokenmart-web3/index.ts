@@ -2,7 +2,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import { Wallet } from "~/tokenmart/types/wallet";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import { ethers } from "ethers";
-import { getWallet } from "~/tokenmart/modules/wallet/wallet";
+import { getWallet } from "./wallet";
 
 declare let window: { ethereum: any };
 
@@ -48,3 +48,5 @@ export async function connect(): Promise<Connection> {
 
     return ret;
 }
+
+export { getWallet };
