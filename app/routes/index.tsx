@@ -1,15 +1,10 @@
 import { AppShell, } from '@mantine/core';
-import NavHeader from "~/components/layout/NavHeader/NavHeader";
-import {
-    SectionLanding
-} from "~/components/home/SectionLanding/SectionLanding";
-import { Footer } from "~/components/layout/FooterLinks/Footer";
-import SectionRecentPurchases
-    from "~/components/home/SectionRecentPurchases/SectionRecentPurchases";
-import RecentlyListed
-    from "~/components/home/SectionNewListings/SectionNewListings";
-import TopCollections
-    from "~/components/home/SectionTopCollections/TopCollections";
+import Header from "~/components/layout/Header/Header";
+import Footer from "~/components/layout/Footer/Footer";
+import SectionLanding from "~/components/home/SectionLanding/SectionLanding";
+import SectionRecentPurchases from "~/components/home/SectionRecentPurchases/SectionRecentPurchases";
+import RecentlyListed from "~/components/home/SectionNewListings/SectionNewListings";
+import TopCollections from "~/components/home/SectionTopCollections/TopCollections";
 
 export default function Index() {
     return (
@@ -18,13 +13,12 @@ export default function Index() {
                 padding="xl"
                 // navbar={<NavbarCustom/>}
                 // @ts-ignore
-                header={<NavHeader/>}
+                header={<Header/>}
                 styles={(theme) => ({
                     main: {
                         padding: 0,
                     },
-                })}
-            >
+                })}>
                 <SectionLanding/>
 
                 <SectionRecentPurchases/>

@@ -1,15 +1,9 @@
-import {
-    Links,
-    LiveReload,
-    Meta,
-    Outlet,
-    Scripts,
-    ScrollRestoration,
-} from "remix";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, } from "remix";
 
 import type { ColorScheme } from "@mantine/core";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-import { useState } from "react";
+import React, { useState } from "react";
+import { WalletProvider } from "~/components/context/WalletContext";
 
 export default function App() {
     return (
@@ -35,26 +29,22 @@ export default function App() {
 }
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
-    let initialColorScheme: ColorScheme
+    let initialColorScheme: ColorScheme = "dark"
     if (typeof window !== 'undefined') {
         initialColorScheme = localStorage.getItem("colorScheme") as ColorScheme
     }
 
-    const [ colorScheme, setColorScheme ] = useState<ColorScheme>(initialColorScheme)
-
+    const [ colorScheme, setColorScheme ] = useState<ColorScheme>(initialColorScheme);
     const toggleColorScheme = (value?: ColorScheme) => {
-        console.log(`toggleColorScheme(${value})`);
         setColorScheme(value || colorScheme === "dark" ? "light" : "dark");
     }
 
     return (
         <ColorSchemeProvider
-            colorScheme={colorScheme}
+            colorScheme={initialColorScheme}
             toggleColorScheme={toggleColorScheme}>
             <MantineProvider
                 theme={{
-                    // linear-gradient(to bottom,  10%, #ec8c69 90%)
-                    // primaryColor: 'pink',
                     primaryColor: 'pink',
                     colorScheme: colorScheme,
                     headings: { fontFamily: 'Greycliff CF, sans-serif' },
@@ -65,9 +55,10 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
                     },
                 }}
                 withNormalizeCSS
-                withGlobalStyles
-            >
-                {children}
+                withGlobalStyles>
+                <WalletProvider>
+                    {children}
+                </WalletProvider>
             </MantineProvider>
         </ColorSchemeProvider>
     );

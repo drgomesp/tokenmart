@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-    Button,
-    Col,
-    createStyles,
-    Grid,
-    Group,
-    Text,
-    ThemeIcon,
-    Title
-} from '@mantine/core';
+import { Button, Col, createStyles, Grid, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
 import TrendingCard from "~/components/nft/TrendingCard/TrendingCard";
 
@@ -60,7 +51,7 @@ const features = [
     },
 ];
 
-export function SectionLanding() {
+export default function SectionLanding() {
     const { classes } = useStyles();
 
     const items = features.map((feature) => (

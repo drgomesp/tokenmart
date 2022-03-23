@@ -1,7 +1,7 @@
 import { AppShell, Title } from "@mantine/core";
-import NavHeader from "~/components/layout/NavHeader/NavHeader";
-import { Footer } from "~/components/layout/FooterLinks/Footer";
-import links from "~/components/layout/NavHeader/links";
+import Header from "~/components/layout/Header/Header";
+import Footer from "~/components/layout/Footer/Footer";
+import links from "~/components/layout/Header/links";
 
 export default function Explore() {
     return (
@@ -9,7 +9,7 @@ export default function Explore() {
             <AppShell
                 padding="xl"
                 // @ts-ignore
-                header={<NavHeader links={links()}/>}
+                header={<Header links={links()}/>}
                 styles={(theme) => ({
                     main: {
                         padding: 20,
@@ -25,7 +25,6 @@ export default function Explore() {
                 </div>
 
             </AppShell>
-
             <Footer/>
         </div>
     );

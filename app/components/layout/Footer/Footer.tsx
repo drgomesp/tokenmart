@@ -1,10 +1,4 @@
-import {
-    ActionIcon,
-    Container,
-    createStyles,
-    Group,
-    Text
-} from '@mantine/core';
+import { ActionIcon, Container, createStyles, Group, Text } from '@mantine/core';
 import { BrandInstagram, BrandTwitter, BrandYoutube } from 'tabler-icons-react';
 import links from './links'
 
@@ -101,7 +95,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export function Footer() {
+export default function Footer() {
     const { classes } = useStyles();
 
     const groups = links().map((group) => {

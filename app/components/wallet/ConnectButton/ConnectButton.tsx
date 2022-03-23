@@ -1,5 +1,8 @@
 import { Avatar, Button, createStyles, Group, Text } from "@mantine/core";
-import { ethers } from 'ethers'
+import { connect, ConnectionState } from "~/modules/wallet/connection"
+import { useWallet } from "~/components/context/WalletContext";
+import { getWallet } from "~/modules/wallet/wallet";
+import { Wallet } from "~/types/wallet";
 
 declare let window: any;
 
@@ -9,52 +12,72 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
+export interface ConnectArgs {
+    provider: string;
+}
+
+async function connectAndStoreWallet({}: ConnectArgs): Promise<{ state: ConnectionState, wallet: Wallet | null }> {
+    if (typeof document !== 'undefined') {
+        const { state, provider, } = await connect();
+
+        if (state === ConnectionState.Connected && provider !== undefined) {
+            const wallet = await getWallet(provider);
+
+            if (wallet === undefined) {
+                throw new Error("kurwaerror!");
+            }
+
+            console.log(`found wallet = `, wallet)
+
+            if (state === ConnectionState.Connected && wallet.address !== null) {
+                sessionStorage.setItem("address", wallet.address);
+                return { state, wallet };
+            }
+        }
+    }
+
+    return { state: ConnectionState.Disconnected, wallet: null };
+}
+
 interface ConnectButtonProps {
+    onConnect: (w: Wallet) => void | null;
     provider: string;
     label: string;
     srcExt: string;
     enabled: boolean;
 }
 
-interface ConnectArgs {
-    provider: string;
-}
-
-async function connect(args: ConnectArgs) {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-    await provider.send("eth_requestAccounts", []);
-
-    const signer = provider.getSigner();
-
-    const address = await signer.getAddress();
-
-    if (address) {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem("address", address);
-        }
-    }
-}
-
 export default function ConnectButton({
+                                          onConnect,
                                           provider,
                                           label,
                                           srcExt,
                                           enabled = true,
                                       }: ConnectButtonProps) {
     const { classes } = useStyles();
-
-    const address = localStorage.getItem("address");
+    const { connectionState, setConnectionState, wallet, setWallet } = useWallet();
 
     return (
         <Button
             onClick={async () => {
-                await connect({ provider })
+                const { state, wallet } = await connectAndStoreWallet({ provider });
+                if (state === ConnectionState.Connected) {
+                    if (wallet !== null) {
+                        setWallet(wallet);
+                        setConnectionState(state);
+
+                        console.log(`connected (${state}) to wallet ${wallet.address}`, onConnect);
+
+                        if (typeof onConnect === "function") {
+                            onConnect(wallet);
+                        }
+                    }
+                }
             }}
             className={classes.button}
             size={"lg"}
             variant={"subtle"}
-            fullWidth disabled={(!!address || !enabled)}>
+            fullWidth disabled={(!!wallet.address || !enabled)}>
             <Group>
                 <Avatar style={{ padding: 2 }}
                         size={"md"}

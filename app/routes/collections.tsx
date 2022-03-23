@@ -1,6 +1,6 @@
 import { AppShell, Title } from "@mantine/core";
-import NavHeader from "~/components/layout/NavHeader/NavHeader";
-import { Footer } from "~/components/layout/FooterLinks/Footer";
+import Header from "~/components/layout/Header/Header";
+import Footer from "~/components/layout/Footer/Footer";
 
 export default function About() {
     return (
@@ -8,7 +8,7 @@ export default function About() {
             <AppShell
                 padding="xl"
                 // @ts-ignore
-                header={<NavHeader/>}
+                header={<Header/>}
                 styles={(theme) => ({
                     main: {
                         padding: 20,
