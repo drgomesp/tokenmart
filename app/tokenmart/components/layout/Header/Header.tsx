@@ -1,8 +1,8 @@
 import { Anchor, Center, Container, createStyles, Group, Header as MantineHeader, Menu, Text, } from '@mantine/core';
 import { ChevronDown } from 'tabler-icons-react';
 import links from './links'
-import ColorSchemeToggle from "~/components/layout/ColorSchemeToggle/ColorSchemeToggle";
-import WalletConnectionWidget from "~/components/layout/WalletConnectionWidget/WalletConnectionWidget";
+import ColorSchemeToggle from "~/tokenmart/components/layout/ColorSchemeToggle/ColorSchemeToggle";
+import WalletConnectionWidget from "~/tokenmart/components/layout/WalletConnectionWidget/WalletConnectionWidget";
 
 const HEADER_HEIGHT = 50;
 

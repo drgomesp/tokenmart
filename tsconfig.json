@@ -15,6 +15,14 @@
       "~/*": [
         "./app/*"
       ],
+      "@tokenmart-react*": [
+        "./app/tokenmart-react",
+        "./app/tokenmart-react*"
+      ],
+      "@tokenmart-web3*": [
+        "./app/tokenmart-web3",
+        "./app/tokenmart-web3*"
+      ],
       "crypto": [
         "./node_modules/crypto-browserify"
       ],

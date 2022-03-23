@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Col, createStyles, Grid, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
-import TrendingCard from "~/components/nft/TrendingCard/TrendingCard";
+import TrendingCard from "~/tokenmart/components/nft/TrendingCard/TrendingCard";
 
 
 const useStyles = createStyles((theme) => ({

@@ -1,8 +1,8 @@
 import { Avatar, Button, createStyles, Group, Text } from "@mantine/core";
-import { connect, ConnectionState } from "~/modules/wallet/connection"
-import { useWallet } from "~/components/context/WalletContext";
-import { getWallet } from "~/modules/wallet/wallet";
-import { Wallet } from "~/types/wallet";
+import { connect, ConnectionState } from "~/tokenmart-web3"
+import { useWallet } from "~/tokenmart/components/context/WalletContext";
+import { getWallet } from "~/tokenmart/modules/wallet/wallet";
+import { Wallet } from "~/tokenmart/types/wallet";
 
 declare let window: any;
 

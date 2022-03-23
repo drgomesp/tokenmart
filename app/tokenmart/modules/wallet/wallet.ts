@@ -1,5 +1,5 @@
 import { Web3Provider } from "@ethersproject/providers";
-import { Wallet } from "~/types/wallet";
+import { Wallet } from "~/tokenmart/types/wallet";
 
 export async function getWallet(provider: Web3Provider): Promise<Wallet> {
     await provider.send("eth_requestAccounts", []);

@@ -3,7 +3,7 @@ import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, } from "re
 import type { ColorScheme } from "@mantine/core";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import React, { useState } from "react";
-import { WalletProvider } from "~/components/context/WalletContext";
+import { WalletProvider } from "~/tokenmart/components/context/WalletContext";
 
 export default function App() {
     return (

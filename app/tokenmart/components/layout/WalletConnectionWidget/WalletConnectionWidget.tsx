@@ -1,10 +1,10 @@
 import { ActionIcon, Avatar, Badge, Button, createStyles, Group, Menu, Modal, Table, Text } from "@mantine/core";
 import { ChevronDown, Logout, Wallet as WalletIcon } from "tabler-icons-react";
-import ConnectButton from "~/components/wallet/ConnectButton/ConnectButton";
+import ConnectButton from "~/tokenmart/components/wallet/ConnectButton/ConnectButton";
 import { useState } from "react";
 import { ClientOnly } from "remix-utils";
-import { useWallet } from "~/components/context/WalletContext";
-import { ConnectionState } from "~/modules/wallet/connection";
+import { useWallet } from "~/tokenmart/components/context/WalletContext";
+import { ConnectionState } from "~/tokenmart-web3";
 
 const useStyles = createStyles((theme) => ({
     burger: {

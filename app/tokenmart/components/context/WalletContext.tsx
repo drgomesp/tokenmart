@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { Wallet } from "~/types/wallet";
-import { ConnectionState } from "~/modules/wallet/connection"
+import { Wallet } from "~/tokenmart/types/wallet";
+import { ConnectionState } from "~/tokenmart-web3";
 
 declare let window: any;
 

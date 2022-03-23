@@ -1,6 +1,6 @@
 import { Col, createStyles, Grid, Group, Text } from "@mantine/core";
 import React from "react";
-import StandardCard from "~/components/nft/StandardCard/StandardCard";
+import StandardCard from "~/tokenmart/components/nft/StandardCard/StandardCard";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
