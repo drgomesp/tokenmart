@@ -22,7 +22,13 @@ const useStyles = createStyles((theme) => ({
     table: {
         margin: `${theme.spacing.xl}px auto`,
         maxWidth: 300,
-    }
+    },
+    emptyCard: {
+        minWidth: 186,
+        minHeight: 224,
+        borderRadius: 8,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+    },
 }));
 
 export default function TopCollections() {
