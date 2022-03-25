@@ -1,6 +1,6 @@
 import { AppShell, Title } from "@mantine/core";
-import Header from "~/tokenmart/components/layout/Header/Header";
-import Footer from "~/tokenmart/components/layout/Footer/Footer";
+import LayoutHeader from "~/tokenmart/components/LayoutHeader/LayoutHeader";
+import LayoutFooter from "~/tokenmart/components/LayoutFooter/LayoutFooter";
 
 export default function About() {
     return (
@@ -8,7 +8,7 @@ export default function About() {
             <AppShell
                 padding="xl"
                 // @ts-ignore
-                header={<Header/>}
+                header={<LayoutHeader/>}
                 styles={(theme) => ({
                     main: {
                         padding: 0,
@@ -19,7 +19,7 @@ export default function About() {
 
             </AppShell>
 
-            <Footer/>
+            <LayoutFooter/>
         </div>
     );
 }

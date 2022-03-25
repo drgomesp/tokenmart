@@ -1,12 +1,12 @@
 import { Col, createStyles, Grid, Group, Text } from "@mantine/core";
 import React from "react";
-import StandardCard from "~/tokenmart/components/nft/StandardCard/StandardCard";
+import NFTStandardCard from "~/tokenmart/components/NFTStandardCard/NFTStandardCard";
 import { ClientOnly } from "remix-utils";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2],
     },
 
     child: {
@@ -35,11 +35,11 @@ const useStyles = createStyles((theme) => ({
         minWidth: 256,
         minHeight: 358,
         borderRadius: 8,
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
     },
 }));
 
-export default function SectionNewListings() {
+export default function HomeSectionRecentPurchases() {
     const { classes } = useStyles();
 
     return (
@@ -53,7 +53,7 @@ export default function SectionNewListings() {
                                   from: 'red',
                                   to: 'grape',
                               }}>
-                            New Listings
+                            Recent Purchases
                         </Text>
                         <Text color={"dimmed"}>
                             Discover the most wanted items of right now
@@ -64,23 +64,26 @@ export default function SectionNewListings() {
                 <Group className={classes.purchases}>
                     <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
                         {() =>
-                            <StandardCard collection="Degen Toonz"
-                                          image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
-                                          id={349}/>}
-                    </ClientOnly>
-
-                    <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
-                        {() => <StandardCard collection="Ape Wives"
-                                             image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
+                            <NFTStandardCard collection="World of Women"
+                                             image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
                                              id={349}/>
                         }
                     </ClientOnly>
 
                     <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
                         {() =>
-                            <StandardCard collection="World of Women"
-                                          image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
-                                          id={349}/>}
+                            <NFTStandardCard collection="Degen Toonz"
+                                             image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
+                                             id={349}/>
+                        }
+                    </ClientOnly>
+
+                    <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
+                        {() =>
+                            <NFTStandardCard collection="Ape Wives"
+                                             image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
+                                             id={349}/>
+                        }
                     </ClientOnly>
                 </Group>
             </Grid>

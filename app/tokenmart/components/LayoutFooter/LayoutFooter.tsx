@@ -95,7 +95,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function Footer() {
+export default function LayoutFooter() {
     const { classes } = useStyles();
 
     const groups = links().map((group) => {

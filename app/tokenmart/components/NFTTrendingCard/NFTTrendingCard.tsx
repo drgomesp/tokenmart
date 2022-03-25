@@ -39,12 +39,12 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export default function TrendingCard({
-                                         collection,
-                                         id,
-                                         image,
-                                         stats
-                                     }: TrendingProps) {
+export default function NFTTrendingCard({
+                                            collection,
+                                            id,
+                                            image,
+                                            stats
+                                        }: TrendingProps) {
     const { classes } = useStyles();
 
     const items = stats.map((stat) => (

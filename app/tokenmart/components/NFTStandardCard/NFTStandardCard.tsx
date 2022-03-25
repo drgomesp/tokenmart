@@ -1,12 +1,4 @@
-import {
-    Badge,
-    Button,
-    Card,
-    createStyles,
-    Group,
-    Image,
-    Text
-} from "@mantine/core";
+import { Badge, Button, Card, createStyles, Group, Image, Text } from "@mantine/core";
 
 interface TrendingProps {
     id: number;
@@ -48,7 +40,7 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export default function StandardCard({ collection, image, }: TrendingProps) {
+export default function NFTStandardCard({ collection, image, }: TrendingProps) {
     const { classes } = useStyles();
 
     return <Card withBorder p="xs" className={classes.card} radius="md">

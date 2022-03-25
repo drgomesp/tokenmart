@@ -1,7 +1,7 @@
 import { ActionIcon, Avatar, Button, createStyles, Group, Menu, Modal, Table, Text } from "@mantine/core";
 import { ChevronDown, Logout, Wallet as WalletIcon } from "tabler-icons-react";
-import WalletConnectButton from "~/tokenmart/components/wallet/WalletConnectButton/WalletConnectButton";
-import WalletDisconnectButton from "~/tokenmart/components/wallet/WalletDisconnectButton/WalletDisconnectButton";
+import WalletConnectButton from "~/tokenmart/components/WalletConnectButton/WalletConnectButton";
+import WalletDisconnectButton from "~/tokenmart/components/WalletDisconnectButton/WalletDisconnectButton";
 import { useCallback, useState } from "react";
 import { ClientOnly } from "remix-utils";
 import useWallet from "~/tokenmart-react/hooks/useWallet";

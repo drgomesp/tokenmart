@@ -1,7 +1,7 @@
 import { AppShell, Title } from "@mantine/core";
-import Header from "~/tokenmart/components/layout/Header/Header";
-import Footer from "~/tokenmart/components/layout/Footer/Footer";
-import links from "~/tokenmart/components/layout/Header/links";
+import LayoutHeader from "~/tokenmart/components/LayoutHeader/LayoutHeader";
+import LayoutFooter from "~/tokenmart/components/LayoutFooter/LayoutFooter";
+import links from "~/tokenmart/components/LayoutHeader/links";
 
 export default function Explore() {
     return (
@@ -9,7 +9,7 @@ export default function Explore() {
             <AppShell
                 padding="xl"
                 // @ts-ignore
-                header={<Header links={links()}/>}
+                header={<LayoutHeader links={links()}/>}
                 styles={(theme) => ({
                     main: {
                         padding: 20,
@@ -25,7 +25,7 @@ export default function Explore() {
                 </div>
 
             </AppShell>
-            <Footer/>
+            <LayoutFooter/>
         </div>
     );
 }

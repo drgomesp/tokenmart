@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function TopCollections() {
+export default function HomeTopCollections() {
     const { classes } = useStyles();
 
     return (
