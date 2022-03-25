@@ -1,6 +1,6 @@
 import { Avatar, Col, createStyles, Grid, Table, Text } from "@mantine/core";
 import { client as sanityClient } from "~/modules/sanity";
-import { useState } from "react";
+import { FC, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function HomeTopCollections() {
+export const HomeTopCollections: FC = () => {
     const { classes } = useStyles();
 
     const [ collections, setCollections ] = useState([]);
@@ -83,3 +83,5 @@ export default function HomeTopCollections() {
         </div>
     )
 }
+
+export default HomeTopCollections;

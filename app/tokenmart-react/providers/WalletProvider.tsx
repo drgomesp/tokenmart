@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import { Wallet, WalletAdapter, WalletAdapterState } from "~/tokenmart-web3/wallets";
 import { WalletContext } from "~/tokenmart-react/hooks/useWallet";
 import { useSessionStorage } from "~/tokenmart-react/hooks/useSessionStorage";
@@ -20,12 +20,14 @@ const initialState: {
     state: WalletAdapterState.Unsupported,
 };
 
-export default function WalletProvider({
-                                           children,
-                                           adapters,
-                                           autoConnect = false,
-                                           sessionStorageKey = "wallet"
-                                       }: WalletProviderProps) {
+const WalletProvider: React.FC<WalletProviderProps> = (
+    {
+        children,
+        adapters,
+        autoConnect = false,
+        sessionStorageKey = "wallet"
+    }
+) => {
     const [ storageWallet, setStorageWallet ] = useSessionStorage<Wallet | null>(sessionStorageKey, null);
     const [ { wallet, adapter, state }, setState ] = useState(initialState);
     const [ connecting, setConnecting ] = useState(false);
@@ -149,7 +151,7 @@ export default function WalletProvider({
             })();
         }
     }, [ autoConnect, adapter, state ]);
-    
+
     return <WalletContext.Provider
         value={{
             adapters,
@@ -164,3 +166,4 @@ export default function WalletProvider({
     </WalletContext.Provider>
 };
 
+export default WalletProvider;
