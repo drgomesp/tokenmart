@@ -1,4 +1,5 @@
-import { Badge, Card, createStyles, Group, Image, Text } from "@mantine/core";
+import { Badge, Card, createStyles, Group, Text } from "@mantine/core";
+import NFTImage from "~/components/NFTImage/NFTImage";
 
 interface TrendingProps {
     id: number;
@@ -60,7 +61,7 @@ export default function NFTTrendingCard({
 
     return <Card withBorder p="xs" className={classes.card} radius="md">
         <Card.Section className={classes.imageSection}>
-            <Image src={image}/>
+            <NFTImage id={1} uri={image}/>
         </Card.Section>
 
         <Badge className={classes.rating} variant="gradient"
