@@ -1,32 +1,14 @@
-import { AppShell, Title } from "@mantine/core";
-import LayoutHeader from "~/components/LayoutHeader/LayoutHeader";
-import LayoutFooter from "~/components/LayoutFooter/LayoutFooter";
-import links from "~/components/LayoutHeader/links";
+import { Title } from "@mantine/core";
 
 export default function Explore() {
     return (
-        <div className={"container"}>
-            <AppShell
-                padding="xl"
-                // @ts-ignore
-                header={<LayoutHeader links={links()}/>}
-                styles={(theme) => ({
-                    main: {
-                        padding: 20,
-                        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
-                    },
-                })}>
-                <div className={""}>
-                    <Title order={2}>Explorery</Title>
+        <>
+            <Title order={2}>Explorery</Title>
 
-                    <h1 className="bg-slate-100 text-3xl font-bold underline">
-                        Hello world!
-                    </h1>
-                </div>
-
-            </AppShell>
-            <LayoutFooter/>
-        </div>
+            <h1 className="bg-slate-100 text-3xl font-bold underline">
+                Hello world!
+            </h1>
+        </>
     );
 }
 

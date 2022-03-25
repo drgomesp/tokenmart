@@ -35,14 +35,12 @@ const useStyles = createStyles((theme) => ({
 
 export const HomeTopCollections: FC = () => {
     const { classes } = useStyles();
-
     const [ collections, setCollections ] = useState([]);
 
     (async () => {
         const query = '*[_type == "collections"] {_id, title, "imageUrl": image.asset->url}'
         const collections = await sanityClient.fetch(query, {});
-        setCollections(collections
-        );
+        setCollections(collections);
     })();
 
     return (

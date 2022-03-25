@@ -1,9 +1,7 @@
-import React from 'react';
 import { Button, Col, createStyles, Grid, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
 import NFTTrendingCard from "~/components/NFTTrendingCard/NFTTrendingCard";
 import { ClientOnly } from "remix-utils";
-
 
 const useStyles = createStyles((theme) => ({
     outer: {

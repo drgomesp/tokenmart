@@ -1,10 +1,12 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, } from "remix";
 import type { ColorScheme } from "@mantine/core";
-import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
+import { AppShell, ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import React, { useMemo, useState } from "react";
 import { MetaMaskWalletAdapter } from "~/tokenmart-web3/wallets/metamask";
 import { WalletAdapter, WalletAdapterNetwork } from "~/tokenmart-web3/wallets";
 import WalletProvider from "~/tokenmart-react/providers/WalletProvider";
+import LayoutHeader from "~/components/LayoutHeader/LayoutHeader";
+import LayoutFooter from "~/components/LayoutFooter/LayoutFooter";
 
 export default function App() {
     return (
@@ -19,7 +21,19 @@ export default function App() {
         </head>
         <body>
         <MantineTheme>
-            <Outlet/>
+            <AppShell
+                padding="xl"
+                header={<LayoutHeader/>}
+                styles={(theme) => ({
+                    main: {
+                        padding: 0,
+                    },
+                })}>
+
+                <Outlet/>
+
+            </AppShell>
+            <LayoutFooter/>
         </MantineTheme>
         <ScrollRestoration/>
         <Scripts/>

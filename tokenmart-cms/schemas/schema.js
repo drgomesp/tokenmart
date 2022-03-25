@@ -38,6 +38,11 @@ export default createSchema({
             type: 'string',
           },
           {
+            name: 'slug',
+            title: 'Slug',
+            type: 'string',
+          },
+          {
             name: 'image',
             title: 'Image',
             type: 'image',
