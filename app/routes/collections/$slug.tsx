@@ -1,9 +1,16 @@
 import { json, LoaderFunction, useLoaderData, useParams } from 'remix';
 import { Avatar, createStyles } from "@mantine/core";
 import { client as sanityClient } from "~/modules/sanity";
-import { Collection } from "~/types/collection";
+import NFTImage from "~/components/NFTImage/NFTImage";
+import { CollectionItem } from "~/types/collection";
 
-type LoaderData = Collection;
+type LoaderData = {
+    _id: string,
+    imageURI: string,
+    slug: string,
+    title: string,
+    items: CollectionItem[],
+};
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -12,9 +19,17 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export const loader: LoaderFunction = async ({ params }) => {
-    const query = `*[_type == "collections" && slug == $slug ] {_id, title, slug, "imageURI": image.asset->url}`;
+    const query = `*[_type=="collections" && slug == $slug ]{
+  ..., "imageURI": image.asset->url,
+  "items": *[_type=='items' && references(^._id)]{ 
+  ...,
+  "imageURI": image.asset->url
+}
+}`;
+
     const found = await sanityClient.fetch(query, { slug: params.slug });
 
+    console.log(found)
     if (found) {
         return json(found[0]);
     }
@@ -25,20 +40,22 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function CollectionRoute() {
     const params = useParams();
 
-    console.log(params)
-
     const { classes } = useStyles();
-    const { title, slug, imageURI } = useLoaderData<LoaderData>();
-    console.log(slug)
+    const { _id, imageURI, title, items } = useLoaderData<LoaderData>();
 
-    if (!slug) {
+    if (!_id) {
         return <>Not Found</>;
     }
 
+    console.log(items);
     return (
         <div className={classes.wrapper}>
             <Avatar size={"xl"} src={imageURI}/>
             <h2>{title}</h2>
+
+            {items.length > 0 ? items.map(item => {
+                return <NFTImage key={item._id} style={{ width: 300 }} id={item.number} uri={item.imageURI}/>;
+            }) : <></>}
         </div>
     );
 }

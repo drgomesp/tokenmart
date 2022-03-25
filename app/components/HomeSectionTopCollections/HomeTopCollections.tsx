@@ -1,6 +1,7 @@
 import { Avatar, Col, createStyles, Grid, Table, Text } from "@mantine/core";
-import { client as sanityClient } from "~/modules/sanity";
-import { FC, useState } from "react";
+import { FC } from "react";
+import { Collection } from "~/types/collection";
+import { Link } from "remix";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -33,15 +34,12 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export const HomeTopCollections: FC = () => {
-    const { classes } = useStyles();
-    const [ collections, setCollections ] = useState([]);
+export interface HomeTopCollectionsProps {
+    collections: Collection[]
+}
 
-    (async () => {
-        const query = '*[_type == "collections"] {_id, title, "imageUrl": image.asset->url}'
-        const collections = await sanityClient.fetch(query, {});
-        setCollections(collections);
-    })();
+export const HomeTopCollections: FC<HomeTopCollectionsProps> = ({ collections }) => {
+    const { classes } = useStyles();
 
     return (
         <div className={classes.wrapper}>
@@ -64,13 +62,19 @@ export const HomeTopCollections: FC = () => {
                     <div>
                         <Table className={classes.table} verticalSpacing="xs">
                             <tbody>
-                            {collections.map((col: { _id: any, title: string, imageUrl: string }) => {
+                            {collections.map((col) => {
                                 return <tr>
-                                    <td><Text size={"lg"} weight={700}
+                                    <td>
+                                        <Text size={"lg"} weight={700}
                                               color={"dimmed"}>{col._id.substring(9, 11)}</Text>
                                     </td>
-                                    <td><Avatar size={"lg"} src={col.imageUrl}> </Avatar></td>
-                                    <td><Text size={"md"}>{col.title}</Text></td>
+                                    <td>
+                                        <Avatar size={"lg"} src={col.imageURI}> </Avatar></td>
+                                    <td>
+                                        <Link to={`/collections/${col.slug}`}>
+                                            <Text size={"md"}>{col.title}</Text>
+                                        </Link>
+                                    </td>
                                 </tr>
                             })}
                             </tbody>

@@ -66,7 +66,7 @@ export default function WalletConnectModal() {
                         }}
                         leftIcon={!connected ? <WalletIcon size={22}/> :
                             <Avatar size={"xs"}
-                                    src={"img/logos/metamask-logo.png"}/>}
+                                    src={"/img/logos/metamask-logo.png"}/>}
                         size="sm"
                         styles={{
                             root: {
@@ -79,10 +79,10 @@ export default function WalletConnectModal() {
                         }}>
                         {!connected ?
                             "Connect Wallet" :
-                            <Text style={{ fontFamily: `Greycliff CF`, }}
-                                  size={"xs"}
-                                  weight={300}
-                                  color={"white"}>
+                            <Text
+                                size={"sm"}
+                                weight={300}
+                                color={"white"}>
                                 {wallet?.address.substring(0, 5)}
                                 ...
                                 {wallet?.address?.substring(wallet?.address.length - 3, wallet?.address.length)}

@@ -26,6 +26,7 @@ export default function App() {
                 header={<LayoutHeader/>}
                 styles={(theme) => ({
                     main: {
+                        headings: { fontFamily: 'Greycliff CF, sans-serif' },
                         padding: 0,
                     },
                 })}>
