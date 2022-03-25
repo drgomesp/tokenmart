@@ -1,6 +1,6 @@
 import { Col, createStyles, Grid, Group, Text } from "@mantine/core";
 import React from "react";
-import NFTStandardCard from "~/tokenmart/components/NFTStandardCard/NFTStandardCard";
+import NFTStandardCard from "~/components/NFTStandardCard/NFTStandardCard";
 import { ClientOnly } from "remix-utils";
 
 const useStyles = createStyles((theme) => ({

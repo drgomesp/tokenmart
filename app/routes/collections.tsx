@@ -1,6 +1,6 @@
 import { AppShell, Title } from "@mantine/core";
-import LayoutHeader from "~/tokenmart/components/LayoutHeader/LayoutHeader";
-import LayoutFooter from "~/tokenmart/components/LayoutFooter/LayoutFooter";
+import LayoutHeader from "~/components/LayoutHeader/LayoutHeader";
+import LayoutFooter from "~/components/LayoutFooter/LayoutFooter";
 
 export default function About() {
     return (

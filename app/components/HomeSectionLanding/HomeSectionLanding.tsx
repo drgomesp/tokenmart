@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Col, createStyles, Grid, Group, Text, ThemeIcon, Title } from '@mantine/core';
 import { CircleDotted, FileCode, Flame, ReceiptOff } from 'tabler-icons-react';
-import NFTTrendingCard from "~/tokenmart/components/NFTTrendingCard/NFTTrendingCard";
+import NFTTrendingCard from "~/components/NFTTrendingCard/NFTTrendingCard";
 import { ClientOnly } from "remix-utils";
 
 
@@ -148,8 +148,8 @@ export default function HomeSectionLanding() {
                             </ClientOnly>
 
                             <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
-                                {() => <NFTTrendingCard collection="The Doge Pound"
-                                                        image={`img/nfts/the-doge-pound/${Math.floor(Math.random() * 10) + 1}.png`}
+                                {() => <NFTTrendingCard collection="Bored Ape"
+                                                        image={`img/nfts/bored-ape/${Math.floor(Math.random() * 10) + 1}.png`}
                                                         id={763} stats={stats}/>}
                             </ClientOnly>
 
