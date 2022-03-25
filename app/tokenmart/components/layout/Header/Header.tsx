@@ -2,7 +2,7 @@ import { Anchor, Center, Container, createStyles, Group, Header as MantineHeader
 import { ChevronDown } from 'tabler-icons-react';
 import links from './links'
 import ColorSchemeToggle from "~/tokenmart/components/layout/ColorSchemeToggle/ColorSchemeToggle";
-import WalletConnectionWidget from "~/tokenmart/components/layout/WalletConnectionWidget/WalletConnectionWidget";
+import WalletConnectModal from "~/tokenmart/components/wallet/WalletConnectModal/WalletConnectModal";
 
 const HEADER_HEIGHT = 50;
 
@@ -99,7 +99,7 @@ export default function Header() {
                     {items}
                 </Group>
 
-                <WalletConnectionWidget/>
+                <WalletConnectModal/>
             </Container>
         </MantineHeader>
     );

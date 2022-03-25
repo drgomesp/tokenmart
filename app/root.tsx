@@ -1,9 +1,10 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, } from "remix";
-
 import type { ColorScheme } from "@mantine/core";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-import React, { useState } from "react";
-import { WalletProvider } from "~/tokenmart/components/context/WalletContext";
+import React, { useMemo, useState } from "react";
+import { MetaMaskWalletAdapter } from "~/tokenmart-web3/wallets/metamask";
+import { WalletAdapter, WalletAdapterNetwork } from "~/tokenmart-web3/wallets";
+import WalletProvider from "~/tokenmart-react/providers/WalletProvider";
 
 export default function App() {
     return (
@@ -39,6 +40,15 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
         setColorScheme(value || colorScheme === "dark" ? "light" : "dark");
     }
 
+    const network = WalletAdapterNetwork.Devnet;
+
+    const adapters: WalletAdapter[] = useMemo(
+        () => [
+            new MetaMaskWalletAdapter(),
+        ],
+        [ network ]
+    );
+
     return (
         <ColorSchemeProvider
             colorScheme={initialColorScheme}
@@ -56,7 +66,7 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
                 }}
                 withNormalizeCSS
                 withGlobalStyles>
-                <WalletProvider>
+                <WalletProvider adapters={adapters} autoConnect={false}>
                     {children}
                 </WalletProvider>
             </MantineProvider>

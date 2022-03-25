@@ -1,8 +1,6 @@
 import { Web3Provider } from "@ethersproject/providers";
-import { Wallet } from "~/tokenmart/types/wallet";
 import MetaMaskOnboarding from "@metamask/onboarding";
 import { ethers } from "ethers";
-import { getWallet } from "./wallet";
 
 declare let window: { ethereum: any };
 
@@ -14,7 +12,7 @@ export enum ConnectionState {
 export interface Connection {
     state: ConnectionState
     provider: Web3Provider | undefined
-    wallet: Wallet | undefined
+    // wallet: Wallet | undefined
 }
 
 export async function connect(): Promise<Connection> {
@@ -29,7 +27,6 @@ export async function connect(): Promise<Connection> {
 
         return {
             state: ConnectionState.Disconnected,
-            wallet: undefined,
             provider: undefined
         };
     }
@@ -43,10 +40,16 @@ export async function connect(): Promise<Connection> {
     const ret = {
         state: ConnectionState.Connected,
         provider,
-        wallet: await getWallet(provider),
+        // wallet: await getWallet(provider),
     };
 
     return ret;
 }
 
-export { getWallet };
+// export async function getWallet(provider: Web3Provider): Promise<Wallet> {
+//     await provider.send("eth_requestAccounts", []);
+//
+//     const signer = provider.getSigner();
+//
+//     // return { }
+// }
