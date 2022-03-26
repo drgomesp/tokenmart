@@ -4,10 +4,36 @@ import HomeTopCollections from "~/components/HomeSectionTopCollections/HomeTopCo
 import HomeSectionNewListings from "~/components/HomeSectionNewListings/HomeSectionNewListings";
 import { json, LoaderFunction, useLoaderData } from "remix";
 import { client as sanityClient } from "~/modules/sanity";
-import { Collection } from "~/types/collection";
+import { Collection, CollectionItem } from "~/types/collection";
+
+interface LoaderData {
+    items: CollectionItem[],
+    collections: Collection[],
+}
 
 export const loader: LoaderFunction = async ({ params }) => {
-    const query = `
+    const ret = {
+        items: [],
+        collections: [],
+    };
+
+    let query = `
+    *[ _type == "items" ] {
+        ..., 
+        "imageURI": image.asset->url,
+        collection-> { 
+            ...,
+            "imageURI": image.asset->url
+        }
+    }`;
+
+    let found = await sanityClient.fetch(query, {});
+
+    if (found && found.length > 0) {
+        ret.items = found;
+    }
+
+    query = `
     *[_type=="collections"]{
         ..., 
         "imageURI": image.asset->url, 
@@ -17,19 +43,22 @@ export const loader: LoaderFunction = async ({ params }) => {
         }
     }`
 
-    return json(await sanityClient.fetch(query, {}));
+    found = await sanityClient.fetch(query, {});
+    if (found && found.length > 0) {
+        ret.collections = found;
+    }
+
+    return json(ret);
 };
 
 export default function Index() {
-    const collections = useLoaderData<Collection[]>();
+    const { items, collections } = useLoaderData<LoaderData>();
 
-    return (
-        <>
-            <HomeSectionLanding/>
-            <HomeSectionRecentPurchases/>
-            <HomeSectionNewListings/>
-            <HomeTopCollections collections={collections}/>
-        </>
-    );
+    return <>
+        <HomeSectionLanding items={items}/>
+        <HomeSectionRecentPurchases items={items.slice(0, 3)}/>
+        <HomeSectionNewListings items={items.slice(0, 3)}/>
+        <HomeTopCollections collections={collections}/>
+    </>;
 }
 

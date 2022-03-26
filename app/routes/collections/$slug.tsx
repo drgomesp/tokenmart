@@ -1,8 +1,10 @@
 import { json, LoaderFunction, useLoaderData, useParams } from 'remix';
-import { Avatar, createStyles } from "@mantine/core";
+import { Avatar, Container, createStyles, Group, Tabs, Title } from "@mantine/core";
 import { client as sanityClient } from "~/modules/sanity";
-import NFTImage from "~/components/NFTImage/NFTImage";
 import { CollectionItem } from "~/types/collection";
+import NFTStandardCard from "~/components/NFTStandardCard/NFTStandardCard";
+import React from "react";
+import { ClientOnly } from "remix-utils";
 
 type LoaderData = {
     _id: string,
@@ -13,8 +15,52 @@ type LoaderData = {
 };
 
 const useStyles = createStyles((theme) => ({
+    background: {
+        width: "100%",
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+    },
+
     wrapper: {
-        padding: `${theme.spacing.xl * 2}px ${theme.spacing.xl * 1.25}px`,
+        margin: "0 auto",
+        maxWidth: 960,
+        padding: `${theme.spacing.xl * 5}px ${theme.spacing.xl}px`,
+    },
+
+    items: {
+        padding: `${theme.spacing.xl * 5}px ${theme.spacing.xl}px`,
+    },
+
+    card: {
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+    },
+
+    avatar: {
+        border: `2px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white}`,
+    },
+
+    tabs: {
+        [theme.fn.smallerThan('sm')]: {
+            display: 'none',
+        },
+    },
+
+    tabsList: {
+        borderBottom: '0 !important',
+    },
+
+    tabControl: {
+        fontWeight: 500,
+        height: 38,
+        color: `${theme.white} !important`,
+
+        '&:hover': {
+            backgroundColor: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 7 : 5],
+        },
+    },
+
+    tabControlActive: {
+        color: `${theme.colorScheme === 'dark' ? theme.white : theme.black} !important`,
+        borderColor: `${theme.colors[theme.primaryColor][6]} !important`,
     },
 }));
 
@@ -29,8 +75,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
     const found = await sanityClient.fetch(query, { slug: params.slug });
 
-    console.log(found)
-    if (found) {
+    if (found && found.length > 0) {
         return json(found[0]);
     }
 
@@ -47,15 +92,36 @@ export default function CollectionRoute() {
         return <>Not Found</>;
     }
 
-    console.log(items);
-    return (
-        <div className={classes.wrapper}>
-            <Avatar size={"xl"} src={imageURI}/>
-            <h2>{title}</h2>
+    const tabs = [ "aaa", "bbb", "ccc" ].map((tab) => <Tabs.Tab label={tab} key={tab}/>);
 
-            {items.length > 0 ? items.map(item => {
-                return <NFTImage key={item._id} style={{ width: 300 }} id={item.number} uri={item.imageURI}/>;
-            }) : <></>}
+    return (
+        <div className={classes.background}>
+            <div className={classes.wrapper}>
+                <Container>
+                    <Group mt="lg" position="apart" spacing={0}>
+                        <Title order={2}>{title}</Title>
+                        <Avatar size={128} radius={80} mx="auto" mt={-30} src={imageURI}/>
+                        <Tabs
+                            variant="default"
+                            classNames={{
+                                root: classes.tabs,
+                                tabsListWrapper: classes.tabsList,
+                                tabControl: classes.tabControl,
+                                tabActive: classes.tabControlActive,
+                            }}
+                        >{tabs}</Tabs>
+                    </Group>
+
+                    <Group className={classes.items}>
+                        <ClientOnly fallback={<div className={""}></div>}>
+                            {items.length > 0 ? items.map(item => {
+                                return <NFTStandardCard collection={item.title} image={item.imageURI}
+                                                        id={item.number}/>;
+                            }) : <></>}
+                        </ClientOnly>
+                    </Group>
+                </Container>
+            </div>
         </div>
     );
 }

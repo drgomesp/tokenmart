@@ -2,9 +2,12 @@ import { Col, createStyles, Grid, Group, Text } from "@mantine/core";
 import React from "react";
 import NFTStandardCard from "~/components/NFTStandardCard/NFTStandardCard";
 import { ClientOnly } from "remix-utils";
+import { CollectionItem } from "~/types/collection";
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
+        margin: "0 auto",
+        maxWidth: 960,
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
     },
@@ -39,7 +42,11 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function HomeSectionNewListings() {
+interface HomeSectionNewListingsProps {
+    items: CollectionItem[];
+}
+
+export const HomeSectionNewListings: React.FC<HomeSectionNewListingsProps> = ({ items }) => {
     const { classes } = useStyles();
 
     return (
@@ -62,28 +69,15 @@ export default function HomeSectionNewListings() {
                 </Col>
 
                 <Group className={classes.purchases}>
-                    <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
-                        {() =>
-                            <NFTStandardCard collection="Degen Toonz"
-                                             image={`img/nfts/degen-toonz/${Math.floor(Math.random() * 10) + 1}.png`}
-                                             id={349}/>}
-                    </ClientOnly>
-
-                    <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
-                        {() => <NFTStandardCard collection="Ape Wives"
-                                                image={`img/nfts/desperate-ape-wives/${Math.floor(Math.random() * 10) + 1}.png`}
-                                                id={349}/>
-                        }
-                    </ClientOnly>
-
-                    <ClientOnly fallback={<div className={classes.emptyCard}></div>}>
-                        {() =>
-                            <NFTStandardCard collection="World of Women"
-                                             image={`img/nfts/world-of-women/${Math.floor(Math.random() * 10) + 1}.png`}
-                                             id={349}/>}
-                    </ClientOnly>
+                    {items.map(item =>
+                        <ClientOnly key={item._id} fallback={<div className={classes.emptyCard}></div>}>
+                            {() => <NFTStandardCard collection={item.collection.title} image={item.imageURI}
+                                                    number={item.number}/>}
+                        </ClientOnly>
+                    )}
                 </Group>
             </Grid>
         </div>
     )
 }
+export default HomeSectionNewListings;

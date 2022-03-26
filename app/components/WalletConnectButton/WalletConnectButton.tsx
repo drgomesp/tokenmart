@@ -19,11 +19,11 @@ interface ConnectButtonProps {
 }
 
 export default function WalletConnectButton({
-                                          onClick,
-                                          provider,
-                                          srcExt,
-                                          enabled = true,
-                                      }: ConnectButtonProps) {
+                                                onClick,
+                                                provider,
+                                                srcExt,
+                                                enabled = true,
+                                            }: ConnectButtonProps) {
     const { classes } = useStyles();
     const { wallet, adapter, state, connect } = useWallet();
 

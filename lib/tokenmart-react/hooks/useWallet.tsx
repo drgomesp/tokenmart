@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Wallet, WalletAdapter, WalletAdapterState } from "~/tokenmart-web3/wallets";
+import { Wallet, WalletAdapter, WalletAdapterState } from "../../tokenmart-web3/wallets";
 
 const defaultContext: WalletContextState = {
     adapters: [],

@@ -17,7 +17,7 @@ export const loader: LoaderFunction = async ({ params }) => {
     return json(await sanityClient.fetch(query, {}));
 };
 
-export default function Collections() {
+export default function Index() {
     const collections = useLoaderData<LoaderData>();
 
     return (

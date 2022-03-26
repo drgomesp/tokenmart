@@ -14,7 +14,7 @@ export type CollectionItem = {
     _rev: string,
     _updatedAt: string,
     number: number,
-    collection: string,
+    collection: Collection,
     image: string,
     imageURI: string,
     slug: string,

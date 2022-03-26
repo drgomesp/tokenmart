@@ -40,13 +40,10 @@ export class MetaMaskWalletAdapter extends GenericWalletAdapter {
                 this.onboarding.startOnboarding();
             }
 
-            console.log('MetaMaskWalletAdapter :: connect')
-
-
             this.provider = new ethers.providers.Web3Provider(window.ethereum);
 
             this.provider.on("network", (newNetwork, oldNetwork) => {
-                console.log('MetaMaskWalletAdapter :: network change detected')
+                // console.log('MetaMaskWalletAdapter :: network change detected')
             });
 
             this.state = WalletAdapterState.Connected;
@@ -61,8 +58,6 @@ export class MetaMaskWalletAdapter extends GenericWalletAdapter {
     }
 
     async disconnect(): Promise<void> {
-        console.log('MetaMaskWalletAdapter :: disconnect')
-
         this.state = WalletAdapterState.Installed;
         this.wallet = null;
 

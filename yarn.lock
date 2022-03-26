@@ -11942,11 +11942,6 @@
   "resolved" "https://registry.npmjs.org/sanitize.css/-/sanitize.css-13.0.0.tgz"
   "version" "13.0.0"
 
-"sanity@^2.20.0":
-  "integrity" "sha512-9X1f+WwhRikcu25qbKsGQ83m09vPCtDu9X5K/fjFM9Cd13Kk0DGiuIuGtO3F0+tmsWCvJ/gtZ5DUfCOvU+0fFA=="
-  "resolved" "https://registry.npmjs.org/sanity/-/sanity-2.20.0.tgz"
-  "version" "2.20.0"
-
 "sass-loader@^12.3.0":
   "integrity" "sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA=="
   "resolved" "https://registry.npmjs.org/sass-loader/-/sass-loader-12.6.0.tgz"

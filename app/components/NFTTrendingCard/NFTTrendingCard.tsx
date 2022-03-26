@@ -2,19 +2,15 @@ import { Badge, Card, createStyles, Group, Text } from "@mantine/core";
 import NFTImage from "~/components/NFTImage/NFTImage";
 
 interface TrendingProps {
-    id: number;
+    number: number;
     image: string;
     collection: string;
-    stats: {
-        title: string;
-        value: string;
-    }[];
 }
 
 const useStyles = createStyles((theme) => ({
     card: {
-        maxWidth: "186px",
-        maxHeight: "224px",
+        maxWidth: "225px",
+        maxHeight: "265px",
         border: 0,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     },
@@ -36,32 +32,21 @@ const useStyles = createStyles((theme) => ({
     },
 
     infoSection: {
-        paddingLeft: "10px",
+        paddingLeft: "5px",
     }
 }));
 
+
 export default function NFTTrendingCard({
                                             collection,
-                                            id,
-                                            image,
-                                            stats
+                                            number,
+                                            image
                                         }: TrendingProps) {
     const { classes } = useStyles();
 
-    const items = stats.map((stat) => (
-        <div key={stat.title}>
-            <Text size="xs" color="dimmed">
-                {stat.title}
-            </Text>
-            <Text weight={500} size="sm">
-                {stat.value}
-            </Text>
-        </div>
-    ));
-
     return <Card withBorder p="xs" className={classes.card} radius="md">
         <Card.Section className={classes.imageSection}>
-            <NFTImage id={1} uri={image}/>
+            <NFTImage uri={image}/>
         </Card.Section>
 
         <Badge className={classes.rating} variant="gradient"
@@ -75,8 +60,8 @@ export default function NFTTrendingCard({
         <Group position="apart" mt="xs">
             <Text size="xs" weight={500}
                   color="dimmed">{collection}</Text>
-            <Badge size="sm" radius="xl" variant={"dot"}>
-                #{Math.floor(Math.random() * 998) + 1}
+            <Badge size="md" radius="xl" variant={"dot"}>
+                #{number}
             </Badge>
         </Group>
     </Card>

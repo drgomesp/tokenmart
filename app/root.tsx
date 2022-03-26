@@ -8,7 +8,7 @@ import WalletProvider from "~/tokenmart-react/providers/WalletProvider";
 import LayoutHeader from "~/components/LayoutHeader/LayoutHeader";
 import LayoutFooter from "~/components/LayoutFooter/LayoutFooter";
 
-export default function App() {
+export const App: React.FC = () => {
     return (
         <html lang="en">
         <head>
@@ -31,7 +31,9 @@ export default function App() {
                     },
                 })}>
 
-                <Outlet/>
+                <main>
+                    <Outlet/>
+                </main>
 
             </AppShell>
             <LayoutFooter/>
@@ -45,8 +47,8 @@ export default function App() {
 }
 
 function MantineTheme({ children }: { children: React.ReactNode }) {
-    let initialColorScheme: ColorScheme = "dark"
-    if (typeof window !== 'undefined') {
+    let initialColorScheme: ColorScheme = "light";
+    if (typeof document !== 'undefined') {
         initialColorScheme = localStorage.getItem("colorScheme") as ColorScheme
     }
 
@@ -88,3 +90,5 @@ function MantineTheme({ children }: { children: React.ReactNode }) {
         </ColorSchemeProvider>
     );
 }
+
+export default App;

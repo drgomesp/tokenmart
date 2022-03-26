@@ -12,6 +12,12 @@
       "ES2019"
     ],
     "paths": {
+      "~/tokenmart-react/*": [
+        "./lib/tokenmart-react/*"
+      ],
+      "~/tokenmart-web3/*": [
+        "./lib/tokenmart-web3/*"
+      ],
       "~/*": [
         "./app/*"
       ],

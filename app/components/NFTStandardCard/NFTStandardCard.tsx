@@ -1,17 +1,13 @@
 import { Badge, Button, Card, createStyles, Group, Image, Text } from "@mantine/core";
 import NFTImage from "~/components/NFTImage/NFTImage";
-
-interface TrendingProps {
-    id: number;
-    image: string;
-    collection: string;
-}
+import React from "react";
 
 const useStyles = createStyles((theme) => ({
     card: {
         maxWidth: 256,
         maxHeight: 525,
         border: 0,
+        marginBottom: 25,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,
     },
 
@@ -41,19 +37,25 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export default function NFTStandardCard({ collection, image, }: TrendingProps) {
+interface NFTStandardCardProps {
+    collection: string;
+    number: number;
+    image: string;
+}
+
+export const NFTStandardCard: React.FC<NFTStandardCardProps> = ({ collection, number, image }) => {
     const { classes } = useStyles();
 
     return <Card withBorder p="xs" className={classes.card} radius="md">
         <Card.Section className={classes.imageSection}>
-            <NFTImage id={1} uri={image}/>
+            <NFTImage uri={image}/>
         </Card.Section>
 
         <Group position="apart" mt="xs">
             <Text size="xs" weight={500}
                   color="dimmed">{collection}</Text>
             <Badge size="sm" radius="xl" variant={"dot"}>
-                #{Math.floor(Math.random() * 998) + 1}
+                #{number}
             </Badge>
         </Group>
 
@@ -66,11 +68,11 @@ export default function NFTStandardCard({ collection, image, }: TrendingProps) {
                     <Text size="xl" weight={700}
                           sx={{ lineHeight: 1 }}>
                         ETH
-                        0.{Math.floor(Math.random() * 10) + 1}
+                        0.020
                     </Text>
                     <Text size="md" color="dimmed" weight={500}
                           sx={{ lineHeight: 1 }} mt={3}>
-                        (${Math.floor(Math.random() * 10) + 1}{Math.floor(Math.random() * 10) + 1}0.32)
+                        $2458.07
                     </Text>
                 </div>
 
@@ -90,3 +92,4 @@ export default function NFTStandardCard({ collection, image, }: TrendingProps) {
     </Card>
 }
 
+export default NFTStandardCard;

@@ -34,7 +34,7 @@ export async function connect(): Promise<Connection> {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     provider.on("network", (newNetwork, oldNetwork) => {
-        console.log(`networkChanged`, newNetwork);
+        // console.log(`networkChanged`, newNetwork);
     });
 
     const ret = {

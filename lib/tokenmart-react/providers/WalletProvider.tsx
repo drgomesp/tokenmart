@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
-import { Wallet, WalletAdapter, WalletAdapterState } from "~/tokenmart-web3/wallets";
-import { WalletContext } from "~/tokenmart-react/hooks/useWallet";
-import { useSessionStorage } from "~/tokenmart-react/hooks/useSessionStorage";
+import { Wallet, WalletAdapter, WalletAdapterState } from "../../tokenmart-web3/wallets";
+import { WalletContext } from "../hooks/useWallet";
+import { useSessionStorage } from "../hooks/useSessionStorage";
 
 export type WalletProviderProps = {
     children: ReactNode,
@@ -36,8 +36,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
     const connect = useCallback(async () => {
         if (!adapter) return;
 
-        console.log(`WalletProvider::connect`, { adapter, autoConnect });
-
         try {
             setConnecting(true);
             await adapter.connect();
@@ -58,7 +56,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
 
     // handler for the connect event from the adapter
     const handleDisconnect = useCallback(() => {
-        console.log(`WalletProvider :: handleDisconnect`);
         setStorageWallet(() => null);
     }, [ adapter, state, wallet, disconnecting ]);
 
@@ -66,8 +63,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
         if (!adapter) return;
 
         try {
-            console.log(`WalletProvider :: disconnect`);
-
             setDisconnecting(true);
             await adapter.disconnect();
         } catch (error: any) {
@@ -100,8 +95,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
     useEffect(function setupProvider() {
         if (!adapter) return;
 
-        console.log(`WalletProvider :: setup`, adapter);
-
         adapter.on('connect', handleConnect);
         adapter.on('disconnect', handleDisconnect);
 
@@ -115,10 +108,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
         const adapter = adapters[0];
 
         if (adapter) {
-            console.log(`WalletProvider :: `, {
-                storageWallet,
-            });
-
             if (storageWallet) {
                 (async () => {
                     await connect();
@@ -130,12 +119,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
                 adapter,
                 state: adapter.state
             });
-
-            console.log(`WalletProvider :: useEffect :: setState`, {
-                wallet: storageWallet,
-                adapter,
-                state: adapter.state
-            })
         } else {
             setState(initialState);
         }
@@ -145,7 +128,6 @@ const WalletProvider: React.FC<WalletProviderProps> = (
         if (adapter && !autoConnect && !storageWallet) return;
 
         if (autoConnect || storageWallet) {
-            console.log('WalletProvider :: auto-connecting');
             (async () => {
                 await connect();
             })();

@@ -7,7 +7,6 @@ import { ClientOnly } from "remix-utils";
 import useWallet from "~/tokenmart-react/hooks/useWallet";
 import { WalletAdapterState } from "~/tokenmart-web3/wallets";
 
-
 const useStyles = createStyles((theme) => ({
     burger: {
         [theme.fn.largerThan('sm')]: {
