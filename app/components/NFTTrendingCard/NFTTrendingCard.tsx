@@ -9,7 +9,7 @@ interface TrendingProps {
 
 const useStyles = createStyles((theme) => ({
     card: {
-        maxWidth: "225px",
+        maxWidth: 215,
         maxHeight: "265px",
         border: 0,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.white,

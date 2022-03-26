@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
 
     child: {
         margin: "0 auto",
-        maxWidth: 960,
+        maxWidth: 1200,
     },
 
     title: {},

@@ -7,14 +7,13 @@ import { CollectionItem } from "~/types/collection";
 const useStyles = createStyles((theme) => ({
     wrapper: {
         margin: "0 auto",
-        maxWidth: 960,
         padding: `${theme.spacing.xl}px ${theme.spacing.xl}px`,
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
     },
 
     child: {
         margin: "0 auto",
-        maxWidth: 960,
+        maxWidth: 1200,
     },
 
     title: {},

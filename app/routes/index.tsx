@@ -55,10 +55,9 @@ export default function Index() {
     const { items, collections } = useLoaderData<LoaderData>();
 
     return <>
-        <HomeSectionLanding items={items}/>
-        <HomeSectionRecentPurchases items={items.slice(0, 3)}/>
-        <HomeSectionNewListings items={items.slice(0, 3)}/>
+        <HomeSectionLanding items={items.slice(0, 4)}/>
+        <HomeSectionRecentPurchases items={items.slice(4, 8)}/>
+        <HomeSectionNewListings items={items.reverse().slice(4, 8)}/>
         <HomeTopCollections collections={collections}/>
     </>;
 }
-

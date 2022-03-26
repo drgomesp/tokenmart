@@ -116,7 +116,7 @@ export default function CollectionRoute() {
                         <ClientOnly fallback={<div className={""}></div>}>
                             {items.length > 0 ? items.map(item => {
                                 return <NFTStandardCard collection={item.title} image={item.imageURI}
-                                                        id={item.number}/>;
+                                                        number={item.number}/>;
                             }) : <></>}
                         </ClientOnly>
                     </Group>
