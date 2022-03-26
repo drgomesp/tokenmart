@@ -22,7 +22,6 @@ const useStyles = createStyles((theme) => ({
 
     wrapper: {
         margin: "0 auto",
-        maxWidth: 960,
         padding: `${theme.spacing.xl * 5}px ${theme.spacing.xl}px`,
     },
 
@@ -98,9 +97,12 @@ export default function CollectionRoute() {
         <div className={classes.background}>
             <div className={classes.wrapper}>
                 <Container>
-                    <Group mt="lg" position="apart" spacing={0}>
-                        <Title order={2}>{title}</Title>
-                        <Avatar size={128} radius={80} mx="auto" mt={-30} src={imageURI}/>
+                    <Group mt="lg" position="center" direction="column" spacing={0}>
+                        <Title order={2}>
+                            <Avatar size={128} radius={80} mx="auto" mt={-30} src={imageURI}/>
+                            {title}
+                        </Title>
+
                         <Tabs
                             variant="default"
                             classNames={{
@@ -112,12 +114,12 @@ export default function CollectionRoute() {
                         >{tabs}</Tabs>
                     </Group>
 
-                    <Group className={classes.items}>
+                    <Group className={classes.items} position="left">
                         <ClientOnly fallback={<div className={""}></div>}>
-                            {items.length > 0 ? items.map(item => {
+                            {items.map(item => {
                                 return <NFTStandardCard collection={item.title} image={item.imageURI}
                                                         number={item.number}/>;
-                            }) : <></>}
+                            })}
                         </ClientOnly>
                     </Group>
                 </Container>
