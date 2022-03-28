@@ -46,10 +46,4 @@ export async function connect(): Promise<Connection> {
     return ret;
 }
 
-// export async function getWallet(provider: Web3Provider): Promise<Wallet> {
-//     await provider.send("eth_requestAccounts", []);
-//
-//     const signer = provider.getSigner();
-//
-//     // return { }
-// }
+

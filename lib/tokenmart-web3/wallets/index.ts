@@ -1,4 +1,5 @@
 import EventEmitter from "eventemitter3";
+import { Web3Provider } from "@ethersproject/providers";
 
 export enum WalletAdapterNetwork {
     Mainnet = 'mainnet-beta',
@@ -26,6 +27,7 @@ export type WalletAdapterEvents = {
 export type WalletAdapterProps = {
     name: string;
     state: WalletAdapterState;
+    provider?: Web3Provider | null;
     wallet: Wallet | null;
 
     connect(): Promise<void>;

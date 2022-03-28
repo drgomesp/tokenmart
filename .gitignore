@@ -8,3 +8,8 @@ node_modules
 /build/
 /public/build
 /api/index.js
+
+/hardhat/artifacts*
+/hardhat/deployments
+/hardhat/cache*
+/**/data

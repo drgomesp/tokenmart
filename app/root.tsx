@@ -1,6 +1,6 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, } from "remix";
 import type { ColorScheme } from "@mantine/core";
-import { AppShell, ColorSchemeProvider, MantineProvider } from "@mantine/core";
+import { AppShell, ColorSchemeProvider, createStyles, MantineProvider } from "@mantine/core";
 import React, { useMemo, useState } from "react";
 import { MetaMaskWalletAdapter } from "~/tokenmart-web3/wallets/metamask";
 import { WalletAdapter, WalletAdapterNetwork } from "~/tokenmart-web3/wallets";
@@ -8,7 +8,15 @@ import WalletProvider from "~/tokenmart-react/providers/WalletProvider";
 import LayoutHeader from "~/components/LayoutHeader/LayoutHeader";
 import LayoutFooter from "~/components/LayoutFooter/LayoutFooter";
 
+const useStyles = createStyles((theme) => ({
+    main: {
+        padding: `${theme.spacing.xl * 2}px ${theme.spacing.xl * 1.25}px`,
+    },
+}));
+
 export const App: React.FC = () => {
+    const { classes } = useStyles();
+
     return (
         <html lang="en">
         <head>
@@ -31,7 +39,7 @@ export const App: React.FC = () => {
                     },
                 })}>
 
-                <main>
+                <main className={classes.main}>
                     <Outlet/>
                 </main>
 
